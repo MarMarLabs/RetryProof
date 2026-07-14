@@ -1,0 +1,13 @@
+node_modules/
+.next/
+out/
+coverage/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+.turbo/
+artifacts/runtime/
+*.tsbuildinfo
+OpenAI-Build-Week-RetryProof-Research-and-Plan.md

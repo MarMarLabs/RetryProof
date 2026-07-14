@@ -1,0 +1,107 @@
+{
+  "schemaVersion": "1",
+  "id": "wf_demo_refund_repaired",
+  "name": "Issue refund with reservation",
+  "entryNodeId": "webhook_refund",
+  "nodes": [
+    {
+      "id": "webhook_refund",
+      "name": "Refund webhook",
+      "type": "webhook",
+      "next": "set_refund"
+    },
+    {
+      "id": "set_refund",
+      "name": "Prepare refund",
+      "type": "set",
+      "assignments": [
+        {
+          "targetPath": "$.refund.event_id",
+          "value": { "kind": "json_path", "path": "$.event.id" }
+        },
+        {
+          "targetPath": "$.refund.amount",
+          "value": { "kind": "json_path", "path": "$.event.amount" }
+        }
+      ],
+      "next": "if_refundable"
+    },
+    {
+      "id": "if_refundable",
+      "name": "Is refundable",
+      "type": "if",
+      "condition": {
+        "left": { "kind": "json_path", "path": "$.event.refundable" },
+        "operator": "equals",
+        "right": { "kind": "literal", "value": true }
+      },
+      "whenTrue": "reserve_refund",
+      "whenFalse": "respond_ignored"
+    },
+    {
+      "id": "reserve_refund",
+      "name": "Reserve refund event",
+      "type": "reservation",
+      "namespace": "refunds",
+      "key": { "kind": "json_path", "path": "$.refund.event_id" },
+      "acquiredNext": "http_refund",
+      "conflictNext": "respond_duplicate"
+    },
+    {
+      "id": "http_refund",
+      "name": "Create refund",
+      "type": "http_request",
+      "method": "POST",
+      "routeId": "refunds_create",
+      "path": "/refunds",
+      "body": {
+        "event_id": { "kind": "json_path", "path": "$.refund.event_id" },
+        "amount": { "kind": "json_path", "path": "$.refund.amount" }
+      },
+      "effect": {
+        "id": "refunds",
+        "key": { "kind": "json_path", "path": "$.refund.event_id" }
+      },
+      "next": "set_complete"
+    },
+    {
+      "id": "set_complete",
+      "name": "Mark complete",
+      "type": "set",
+      "assignments": [
+        {
+          "targetPath": "$.result.status",
+          "value": { "kind": "literal", "value": "refunded" }
+        }
+      ],
+      "next": "respond_ok"
+    },
+    {
+      "id": "respond_ok",
+      "name": "Refund response",
+      "type": "respond",
+      "status": 200,
+      "body": {
+        "status": { "kind": "json_path", "path": "$.result.status" }
+      }
+    },
+    {
+      "id": "respond_duplicate",
+      "name": "Duplicate response",
+      "type": "respond",
+      "status": 200,
+      "body": {
+        "status": { "kind": "literal", "value": "already_processed" }
+      }
+    },
+    {
+      "id": "respond_ignored",
+      "name": "Ignored response",
+      "type": "respond",
+      "status": 202,
+      "body": {
+        "status": { "kind": "literal", "value": "ignored" }
+      }
+    }
+  ]
+}

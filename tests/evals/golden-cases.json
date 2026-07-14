@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1",
+  "cases": [
+    {
+      "id": "duplicate-delivery",
+      "scenarioId": "duplicate_delivery",
+      "faultPhase": "before_replayed_delivery",
+      "unsafeEffects": 2,
+      "repairedEffects": 1,
+      "unsafePass": false,
+      "repairedPass": true
+    },
+    {
+      "id": "timeout-after-effect",
+      "scenarioId": "timeout_after_refund",
+      "faultPhase": "after_effect_before_response",
+      "unsafeEffects": 2,
+      "repairedEffects": 1,
+      "unsafePass": false,
+      "repairedPass": true
+    },
+    {
+      "id": "rate-limit-before-effect",
+      "scenarioId": "rate_limit_refund",
+      "faultPhase": "before_effect",
+      "unsafeEffects": 1,
+      "repairedEffects": 0,
+      "unsafePass": true,
+      "repairedPass": true
+    },
+    {
+      "id": "partial-failure-after-effect",
+      "scenarioId": "partial_after_refund",
+      "faultPhase": "after_node",
+      "unsafeEffects": 2,
+      "repairedEffects": 1,
+      "unsafePass": false,
+      "repairedPass": true
+    }
+  ]
+}

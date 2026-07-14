@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1",
+  "id": "inv_refund_once",
+  "statement": "At most one refund effect per event.id",
+  "oracle": {
+    "type": "at_most_once_effect",
+    "effectId": "refunds",
+    "keyPath": "$.key",
+    "maximum": 1
+  },
+  "sourceNodeIds": ["http_refund"],
+  "approved": true
+}

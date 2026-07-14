@@ -1,0 +1,16 @@
+.git
+.github
+.next
+node_modules
+.env
+.env.*
+coverage
+artifacts
+submission
+docs
+tests
+OpenAI-Build-Week-RetryProof-Research-and-Plan.md
+*.log
+*.mp4
+*.mov
+*.png

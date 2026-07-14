@@ -1,0 +1,38 @@
+[
+  {
+    "schemaVersion": "1",
+    "id": "duplicate_delivery",
+    "type": "duplicate_delivery",
+    "targetNodeId": "webhook_refund",
+    "faultPhase": "before_replayed_delivery",
+    "deliveries": 2,
+    "expectedInvariantIds": ["inv_refund_once"]
+  },
+  {
+    "schemaVersion": "1",
+    "id": "timeout_after_refund",
+    "type": "effect_succeeded_then_timeout",
+    "targetNodeId": "http_refund",
+    "faultPhase": "after_effect_before_response",
+    "deliveries": 2,
+    "expectedInvariantIds": ["inv_refund_once"]
+  },
+  {
+    "schemaVersion": "1",
+    "id": "rate_limit_refund",
+    "type": "rate_limited_then_retry",
+    "targetNodeId": "http_refund",
+    "faultPhase": "before_effect",
+    "deliveries": 2,
+    "expectedInvariantIds": ["inv_refund_once"]
+  },
+  {
+    "schemaVersion": "1",
+    "id": "partial_after_refund",
+    "type": "partial_failure_then_retry",
+    "targetNodeId": "http_refund",
+    "faultPhase": "after_node",
+    "deliveries": 2,
+    "expectedInvariantIds": ["inv_refund_once"]
+  }
+]

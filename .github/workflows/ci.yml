@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      DEMO_MODEL_MODE: cached
+      CODEX_REPAIR_MODE: cached
+      SESSION_SIGNING_SECRET: ci-only-retryproof-signing-secret-32-bytes
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run eval:golden
+      - run: npm run demo:rehearse
+      - run: npm run build
+
+  component-journey:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      DEMO_MODEL_MODE: cached
+      CODEX_REPAIR_MODE: cached
+      SESSION_SIGNING_SECRET: ci-only-retryproof-signing-secret-32-bytes
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run test:e2e

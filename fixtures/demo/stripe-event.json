@@ -1,0 +1,12 @@
+{
+  "event": {
+    "id": "evt_refund_001",
+    "type": "refund.requested",
+    "amount": 4200,
+    "currency": "usd",
+    "refundable": true
+  },
+  "customer": {
+    "id": "cus_demo_001"
+  }
+}

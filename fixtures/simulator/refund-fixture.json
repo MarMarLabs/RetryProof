@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1",
+  "id": "fixture_refund",
+  "input": {
+    "event": {
+      "id": "evt_refund_001",
+      "amount": 4200,
+      "refundable": true
+    }
+  },
+  "httpMocks": [
+    {
+      "routeId": "refunds_create",
+      "method": "POST",
+      "path": "/refunds",
+      "status": 201,
+      "responseBody": { "status": "created" }
+    }
+  ]
+}

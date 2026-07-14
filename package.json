@@ -1,0 +1,69 @@
+{
+  "name": "retryproof",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Deterministic retry-fault verification and repair for consequential n8n workflows.",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "start:production": "npm run db:migrate && npm run start",
+    "lint": "eslint . --max-warnings=0",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:unit": "vitest run tests/unit",
+    "test:integration": "vitest run tests/integration",
+    "test:model": "vitest run tests/unit/openai tests/unit/codex",
+    "test:adversarial": "vitest run tests/unit/n8n tests/unit/lab tests/unit/codex",
+    "test:e2e": "vitest run tests/e2e",
+    "eval:golden": "tsx scripts/run-golden-evals.ts",
+    "demo:rehearse": "tsx scripts/rehearse-demo.ts",
+    "demo:video": "node scripts/build-submission-video.mjs",
+    "demo:video:final": "node scripts/compose-submission-video.mjs",
+    "submission:verify": "node scripts/verify-submission-assets.mjs",
+    "submission:dry-run": "node scripts/submission-dry-run.mjs",
+    "submission:final-audit": "node scripts/submission-dry-run.mjs --final",
+    "security:secrets": "node scripts/scan-secrets.mjs",
+    "smoke:http": "tsx scripts/smoke-http-journey.ts",
+    "verify:live:openai": "node --env-file=.env.local --import tsx scripts/verify-live-openai.mts",
+    "verify:live:codex": "node --env-file=.env.local --import tsx scripts/verify-live-codex.mts",
+    "cleanup:expired": "tsx scripts/cleanup-expired.ts",
+    "db:migrate": "node scripts/migrate.mjs",
+    "validate-repair": "vitest run tests/unit/codex/repair.test.ts"
+  },
+  "dependencies": {
+    "@openai/codex-sdk": "0.144.3",
+    "fast-json-patch": "3.1.1",
+    "fflate": "0.8.2",
+    "lucide-react": "0.548.0",
+    "next": "16.2.10",
+    "openai": "6.46.0",
+    "pino": "9.12.0",
+    "postgres": "3.4.7",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "6.9.1",
+    "@testing-library/react": "16.3.2",
+    "@types/node": "24.10.13",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "eslint": "9.39.2",
+    "eslint-config-next": "16.2.10",
+    "jsdom": "28.1.0",
+    "tsx": "4.21.0",
+    "typescript": "5.9.3",
+    "vitest": "4.1.10"
+  },
+  "overrides": {
+    "esbuild": "0.28.1",
+    "postcss": "8.5.10"
+  }
+}
