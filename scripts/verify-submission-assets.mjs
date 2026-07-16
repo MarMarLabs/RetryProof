@@ -74,14 +74,19 @@ const videoInfo = probe(videoPath);
 const durationSeconds = Number.parseFloat(videoInfo.format.duration);
 const videoStream = videoInfo.streams.find((stream) => stream.codec_name === "h264");
 const audioStream = videoInfo.streams.find((stream) => stream.codec_name === "aac");
-if (!videoStream || videoStream.width !== 1280 || videoStream.height !== 720) {
-  fail("final video must contain 1280x720 H.264 video");
+if (
+  !videoStream ||
+  videoStream.width < 1280 ||
+  videoStream.height < 720 ||
+  Math.abs(videoStream.width / videoStream.height - 16 / 9) > 0.01
+) {
+  fail("final video must contain wide H.264 video at least 1280x720");
 }
-if (!audioStream || audioStream.sample_rate !== "48000" || audioStream.channels !== 2) {
-  fail("final video must contain 48 kHz stereo AAC audio");
+if (!audioStream || audioStream.sample_rate !== "48000" || ![1, 2].includes(audioStream.channels)) {
+  fail("final video must contain 48 kHz mono or stereo AAC audio");
 }
-if (durationSeconds < 165 || durationSeconds >= 180) {
-  fail(`final video duration must be 2:45-2:59.999, received ${durationSeconds}`);
+if (durationSeconds < 60 || durationSeconds >= 180) {
+  fail(`final video duration must be 1:00-2:59.999, received ${durationSeconds}`);
 }
 
 const captions = readFileSync(captionPath, "utf8");
@@ -95,7 +100,7 @@ const lastCaptionSeconds =
   Number(lastCaption[2]) * 60 +
   Number(lastCaption[3]) +
   Number(lastCaption[4]) / 1000;
-if (lastCaptionSeconds > durationSeconds || lastCaptionSeconds < 161) {
+if (lastCaptionSeconds > durationSeconds || durationSeconds - lastCaptionSeconds > 1) {
   fail(`captions end at ${lastCaptionSeconds}s for a ${durationSeconds}s video`);
 }
 

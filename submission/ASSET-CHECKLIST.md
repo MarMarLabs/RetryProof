@@ -1,13 +1,15 @@
 # Submission asset checklist
 
-## Required screenshot set
+## Required production screenshot set
 
-- [x] `screenshots/01-import.png` — sanitized six-node demo, support coverage, source hash.
-- [x] `screenshots/02-contract.png` — GPT-5.6 proposal, exact evidence, approval gate, provenance.
-- [x] `screenshots/03-red-counterexample.png` — same event, timeout scenario, two deliveries, two effects, fail.
-- [x] `screenshots/04-codex-repair.png` — bounded repair, actual patch nodes, validation checks, provenance.
-- [x] `screenshots/05-green-comparison.png` — before 2/fail and after 1/pass, same fixture identity.
-- [x] `screenshots/06-evidence-receipt.png` — hashes, coverage, limitations, downloadable artifact.
+- [x] `screenshots/01-import.png` shows the deployed sanitized five-node demo, `5/5` support coverage, and source binding.
+- [x] `screenshots/02-contract.png` shows the deployed approval gate, exact effect/key/oracle, and seeded-contract provenance.
+- [x] `screenshots/03-red-counterexample.png` shows the deployed four-scenario result and primary timeout trace: same event, two deliveries, two effects, fail.
+- [x] `screenshots/04-codex-repair.png` shows the deployed accepted **Fresh Codex** artifact, validator checks, and truncated thread provenance.
+- [x] `screenshots/05-green-comparison.png` shows the deployed before `2/fail` and after `1/pass` comparison using the identical suite.
+- [x] `screenshots/06-evidence-receipt.png` shows the deployed hash, limitations, and **Download evidence ZIP** control.
+
+The six files currently present are the final production screenshot set captured after the live worker passed.
 
 ## Image rules
 
@@ -27,17 +29,16 @@
 
 ## Video package
 
-- [x] `video/retryproof-demo-final.mp4`, 2:45.033 and strictly under 3:00.
-- [x] `video/transcript.md`, 2:42 narration plus a three-second evidence hold.
-- [x] `video/captions.srt`.
+- [x] Final production cut `video/retryproof-demo-final.mp4` is 1:59.300 and strictly under 3:00.
+- [x] The final visibly shows the red trace, live repair action, fresh Codex acceptance, identical green replay, and receipt.
+- [x] `video/transcript.md` and `video/captions.srt` match the final production recording.
 - [x] `video/YOUTUBE.md`.
-- [x] Audio verified at -19.3 dB mean / -4.7 dB max.
-- [x] Captions end with narration at 2:42 and the final cut holds silently on evidence through 2:45.
-- [ ] Public YouTube playback verified in incognito.
+- [x] Final audio level, caption timing, codecs, resolution, and duration were re-verified after replacement.
+- [x] Public YouTube playback verified anonymously at `https://youtu.be/4Oaie-WLKAc`; oEmbed identifies the expected title and MarMar Labs channel.
 
 ## External placeholders still requiring real values
 
-- [ ] Hosted HTTPS URL.
-- [ ] Repository URL.
-- [ ] Public YouTube URL.
-- [ ] `/feedback` Codex Session ID.
+- [x] Hosted HTTPS URL: `https://marmarlabs.com/retryproof/lab/`.
+- [x] Public judge repository: `https://github.com/marmar9615-cloud/RetryProof-Build-Week-2026`.
+- [x] Public YouTube URL: `https://youtu.be/4Oaie-WLKAc`.
+- [x] `/feedback` Codex Session ID: `019f5e19-b54f-7862-8023-f0f4251a5a0f`.

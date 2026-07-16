@@ -1,21 +1,17 @@
 # Demo and fallback plan
 
-## Official recording target: 2 minutes 45 seconds
+## Official recording target: 1 minute 59 seconds
 
-The OpenAI Build Week submission video must be public on YouTube and strictly under three minutes. Record the 2:42 narration in [submission/video/transcript.md](../submission/video/transcript.md), then hold on the evidence receipt for three silent seconds. The resulting 2:45 cut satisfies the project release target while preserving upload/transcode margin.
+The OpenAI Build Week submission video must be public on YouTube and strictly under three minutes. The production cut uses a concise 1:59 narration and compresses only the live-worker wait. All contract, red verdict, accepted repair, green replay, receipt, and limitation states remain readable at normal speed.
 
 | Time | Visible action | Exact voiceover |
 |---|---|---|
-| 0:00–0:12 | Open on the red evidence summary: two deliveries, two refund calls. | Hook: a lost response repeats the refund. |
-| 0:12–0:30 | Select **Try refund demo**; show sanitized import, coverage, and source hash. | Import, secret boundary, and mock-only execution. |
-| 0:30–0:52 | Show the GPT-5.6 proposal, citations, key, scenarios, and provenance. | GPT-5.6 proposes; it does not judge. |
-| 0:52–1:02 | Approve “At most one refund effect per event ID.” | Human approval owns the contract. |
-| 1:02–1:27 | Run timeout-after-effect and keep the red oracle visible. | Two deliveries create two effects for one event. |
-| 1:27–1:57 | Review Codex patch, exact fixture, checks, and provenance. | Bounded repair artifact; deterministic validator owns acceptance. |
-| 1:57–2:23 | Rerun the identical fixture and show `2 → 1`, fail → pass. | Same event, seed, fault, and deliveries. |
-| 2:23–2:36 | Show evidence receipt and artifact download. | Bound hashes, coverage, and limitations. |
-| 2:36–2:42 | End on the green comparison. | “GPT-5.6 proposes. Codex repairs. Deterministic software proves.” |
-| 2:42–2:45 | Hold on the evidence receipt and limitation statement. | No narration. |
+| 0:00–0:27 | Open on the product promise, load the seeded workflow, and show the execution boundary. | Hook, synthetic import, secret boundary, and mock-only execution. |
+| 0:27–0:53 | Show the cached GPT-5.6 seeded contract and explicitly approve the invariant. | Honest seeded provenance; GPT-5.6 proposes, a human approves. |
+| 0:53–1:07 | Run timeout-after-effect and keep the red oracle visible. | Two deliveries create two effects for one event. |
+| 1:07–1:28 | Start the fresh Codex repair; compress only the wait; show acceptance by validators. | Bounded repair artifact; deterministic validator owns acceptance. |
+| 1:28–1:43 | Show the identical replay and `2 → 1`, fail → pass. | Same event, seed, fault, and deliveries. |
+| 1:43–1:59 | Hold on the evidence receipt and explicit limitation statement. | Bound hashes, evidence, limitations, and close. |
 
 ## Central visual proof
 
@@ -85,7 +81,7 @@ For a local recording, omit `DATABASE_URL` and use the deterministic ephemeral s
 
 ## Recording fallback
 
-- Primary cut: 2:45, full journey with a three-second evidence hold.
-- Safety cut: 2:40, omit secondary scenarios and repository tour.
+- Primary cut: 1:59, full journey with the live-worker wait compressed.
+- Safety cut: 1:50, shorten the hero and contract holds only.
 - Never omit: approval gate, red trace, Codex repair provenance, identical green rerun, limitation statement.
 - If a live call is unreliable after one bounded retry, use cached mode and record the provenance label.

@@ -1,41 +1,39 @@
-# RetryProof demo transcript — target 2:45
+# RetryProof demo transcript — 1:59 production cut
 
-## 0:00–0:12 — Hook
+## 0:00–0:10 — Hook
 
-This workflow passes its happy path. But when one webhook response disappears, the same refund happens twice. RetryProof turns that hidden retry bug into a reproducible flight test.
+Retry bugs hide behind successful happy paths. RetryProof turns one into a controlled, repeatable flight test.
 
-## 0:12–0:30 — Import
+## 0:10–0:27 — Import
 
-I load a synthetic n8n refund workflow. RetryProof parses it in memory, removes credential references, rejects inline secrets, and reports exact support coverage. Every external call is a deterministic mock.
+I start with a synthetic n8n refund workflow. RetryProof inspects only supported structure and synthetic data. It does not execute uploaded code, contact the network, or call a real payment service. Inline secrets are rejected before storage.
 
-## 0:30–0:52 — GPT-5.6 contract
+## 0:27–0:45 — GPT-5.6 contract
 
-GPT-5.6 reads only the sanitized supported graph. It identifies the refund as consequential, traces `event.id` as the business key, cites existing nodes and mappings, and proposes the faults worth testing. The model proposes; it cannot run a test or issue a verdict.
+The seeded judge path uses an honestly labeled cached GPT-5.6 contract so anyone can reproduce the demo. The custom-workflow path is separately live-verified with GPT-5.6 Sol. In both paths, the model may propose a grounded effect, business key, invariant, and fault scenarios, but it cannot approve the contract or decide a verdict.
 
-## 0:52–1:02 — Human approval
+## 0:45–0:53 — Human approval
 
-I approve the invariant: at most one refund effect per event ID. Nothing executes before this human decision.
+That decision belongs to a human. I approve one narrow invariant: for each event ID, create at most one refund effect across retries.
 
-## 1:02–1:27 — Red counterexample
+## 0:53–1:07 — Red counterexample
 
-Now I inject timeout after effect. Delivery one records the mock refund, then loses the response. The same event is delivered again. The ledger proves two refund effects for `evt_refund_001`, so the deterministic oracle fails the contract.
+Now the deterministic simulator injects a timeout after the first mock refund commits. The response disappears, the platform retries, and the same event creates a second effect. Same event, one declared fault, two deliveries, two effects. The contract is red.
 
-## 1:27–1:57 — Codex repair
+## 1:07–1:28 — Codex repair
 
-Codex receives the sanitized snapshot, approved invariant, and exact failing trace inside a network-disabled workspace. It can write only a bounded patch and regression artifact. Here it inserts a durable reservation before the refund, preserves the duplicate acknowledgment path, and adds the event ID as provider idempotency key. Local validators—not Codex—check every patch path, hash, node, secret boundary, and fixture.
+I ask the private Codex worker for one bounded repair. A fresh Codex SDK thread runs with high reasoning in a read-only, network-disabled sandbox. It receives sanitized data and may return only the declared patch shape. Codex does not get to mark its own work correct.
 
-## 1:57–2:23 — Identical green rerun
+The wait is compressed here. Worker-side validators bind the source hash and trusted fixture, reject undeclared paths or secrets, and replay the exact counterexample before accepting the candidate.
 
-I rerun the exact regression fixture. Same event. Same `demo-v1` seed. Same timeout phase. Same two deliveries. Before repair: two refund effects and fail. After repair: one refund effect and pass. That controlled difference is the proof.
+## 1:28–1:43 — Identical green rerun
 
-## 2:23–2:36 — Evidence
+The repair adds a durable reservation before the refund and binds idempotency to the event ID. The identical seed, fault, and two deliveries now produce one effect. Before: two and fail. After: one and pass.
 
-The receipt binds source, fixture, scenarios, traces, repair, coverage, and limitations. Judges can download the complete artifact without a real payment account or production credential.
+## 1:43–1:54 — Evidence
 
-## 2:36–2:42 — Close
+The downloadable receipt binds the source, approved invariant, scenario, traces, repair, validation results, and limitations. This proves only the declared deterministic scenario, not production exactly-once safety.
 
-GPT-5.6 proposes. Codex repairs. Deterministic software proves. RetryProof: break your automation before retries do.
+## 1:54–1:59 — Close
 
-## 2:42–2:45 — Evidence hold
-
-No narration. Hold on the green evidence receipt and its explicit limitation statement.
+GPT-5.6 proposes. A human approves. Codex repairs. Deterministic software proves. That is RetryProof.

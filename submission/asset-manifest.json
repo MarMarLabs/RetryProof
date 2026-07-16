@@ -2,26 +2,26 @@
   "schemaVersion": 1,
   "video": {
     "path": "submission/video/retryproof-demo-final.mp4",
-    "bytes": 6242284,
-    "sha256": "09ab694c1c23f25854adbb64c15a9625179d3b838bd2c74a303641f106367dc6",
-    "durationSeconds": 165.033333,
-    "width": 1280,
-    "height": 720,
+    "bytes": 5466015,
+    "sha256": "48cc6e7b8ff50fe001aac253a804457759b8367faa28f387d634f77287650753",
+    "durationSeconds": 119.3,
+    "width": 1366,
+    "height": 768,
     "videoCodec": "h264",
     "audioCodec": "aac",
     "sampleRate": 48000,
-    "channels": 2
+    "channels": 1
   },
   "captions": {
     "path": "submission/video/captions.srt",
-    "bytes": 2270,
-    "sha256": "d7808e1827eed4914262eeb5bc0399f6edcd29dadd5bd18fafe252c9b071981c",
-    "endSeconds": 162
+    "bytes": 1667,
+    "sha256": "79b61a6a9e2d1e3ce2486055c2f4c11e84c3c7b5781862892eade10bbbec2552",
+    "endSeconds": 119.3
   },
   "transcript": {
     "path": "submission/video/transcript.md",
-    "bytes": 2450,
-    "sha256": "1b46d9db76c88427f5b82b9b32431636b14fbaa11ad02a4b89f23a63f57d1394"
+    "bytes": 2431,
+    "sha256": "506cd6fa3afa67f8fb07e548c33ba6ce413a22df9b9ae08c8bf9ce33abcf69fc"
   },
   "thumbnail": {
     "path": "submission/thumbnail/retryproof-thumbnail.png",
@@ -33,43 +33,43 @@
   "screenshots": [
     {
       "path": "submission/screenshots/01-import.png",
-      "bytes": 344417,
-      "sha256": "e5f3cf75ab8ed66459b41fc4d5b89fea96d24097ded8462566627a1fba3f0ead",
+      "bytes": 302551,
+      "sha256": "af0ed935a316dabf3fd72b6036420ceb8eec14fcb42f866eb371d45b3a4da598",
       "width": 1366,
       "height": 768
     },
     {
       "path": "submission/screenshots/02-contract.png",
-      "bytes": 404563,
-      "sha256": "fbc4e2949e112251a7613083c74cfa7e6729fe84bf9b2cc5d23112a2455e882d",
+      "bytes": 347566,
+      "sha256": "b9c187063951b03c3ce792b37ba1ff23e37b8c6c737a154b04b3b980a3319f82",
       "width": 1366,
       "height": 768
     },
     {
       "path": "submission/screenshots/03-red-counterexample.png",
-      "bytes": 356173,
-      "sha256": "7a36b8949f2e14dd9b6273441f147e4099d610bf0451b609c1b2d1ebd833336c",
+      "bytes": 337771,
+      "sha256": "081220fa3d446bfc7fd7799334199a20bde6361f728b79674849a63a426889b2",
       "width": 1366,
       "height": 768
     },
     {
       "path": "submission/screenshots/04-codex-repair.png",
-      "bytes": 357766,
-      "sha256": "6fff0612eabf2fb6f8ec664b6983978d4a151f54a0eae9c49d10d719f2d268f8",
+      "bytes": 359298,
+      "sha256": "2c1a3fe37f1d0c78b5d1fe156371366e41425e336d7b0e125e0ebfcb0bd63bf2",
       "width": 1366,
       "height": 768
     },
     {
       "path": "submission/screenshots/05-green-comparison.png",
-      "bytes": 300697,
-      "sha256": "e3beb1d32638876831e8bc0bb6b62ad848d9264ade079eb127966b8f08cc8f6c",
+      "bytes": 389107,
+      "sha256": "dc60b1ddd84b9e829692ad2eceaed92eaed9b05ee1b7b0aaf92f60b0ce205c24",
       "width": 1366,
       "height": 768
     },
     {
       "path": "submission/screenshots/06-evidence-receipt.png",
-      "bytes": 351008,
-      "sha256": "a5e5d43a33b081cffdda8d67611990264d63e0f9c6ac6492b4463d0f66fd6657",
+      "bytes": 323067,
+      "sha256": "e915bb5a79c213ea06e8e017b3f91cf5cf532bc2da064944fa0bed8245a90c7d",
       "width": 1366,
       "height": 768
     }

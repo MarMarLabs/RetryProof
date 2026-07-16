@@ -1,35 +1,94 @@
 # External submission handoff
 
-Everything below changes external state. Do not perform it until the user explicitly approves the applicable action.
+Everything below changes external state. Do not perform an applicable step until the user has approved it. Never copy a credential into a log, commit, screenshot, video, or handoff.
 
-## Inputs still needed
+## Current release state
 
-1. Git commit author name and email. Do not infer an email from an application account because it may become public in repository history.
-2. Repository visibility choice: public with the included MIT license, or private and shared with `testing@devpost.com` and `build-week-event@openai.com`.
-3. Hosting approval and plan choice. The included Render Blueprint uses free web and PostgreSQL instances and makes no purchase. A free web service can cold-start after 15 idle minutes; a paid instance requires separate purchase approval.
-4. Approval to upload `video/retryproof-demo-final.mp4` publicly to YouTube.
-5. The real `/feedback` Codex Session ID containing the majority of core implementation.
-6. Final eligibility/team confirmation from the entrant.
+- The private-worker implementation is merged at integrated commit `2dd084c`, and both Replit deployments are healthy.
+- The public app readiness endpoint reports live GPT-5.6 and live Codex configured.
+- The public judge snapshot is `https://github.com/marmar9615-cloud/RetryProof-Build-Week-2026` at commit `66da76582b80505ccb19c025fdade9d4d42a02ba`.
+- The final 1:59.300 demo is public at `https://youtu.be/4Oaie-WLKAc`.
+- Majority-core Codex `/feedback` Session ID: `019f5e19-b54f-7862-8023-f0f4251a5a0f`.
+- The remaining external state is the Devpost submitted confirmation.
 
-## Exact execution order
+## Prepared production topology
 
-1. Configure the approved local Git author, stage the candidate, rerun the secret scan, and create the dated initial commit.
-2. Create the approved repository, push the exact commit, and verify `.env.local` plus the private research plan are absent from the remote history.
-3. Connect the repository to Render using `render.yaml`. Keep both agent modes cached for the no-rebuild judge path. Do not add the OpenAI key unless live mode is separately approved.
-4. Wait for `GET /api/v1/ready` to return HTTP 200 with `ready=true`, `schema=ready`, and three migrations. Complete the full seeded path in an incognito browser, download the ZIP, delete the session, and repeat once after a cold start.
-5. Upload the final MP4, captions, thumbnail, and `video/YOUTUBE.md` copy to YouTube. Set visibility to Public, then verify playback and captions in an incognito window. Do not regenerate the already-verified MP4 after upload.
-6. Run `/feedback` in the majority-core Codex task and copy the returned Session ID exactly.
-7. Replace only these placeholders:
-   - `[DEPLOYED_HTTPS_URL]`
-   - `https://github.com/marmar9615-cloud/RetryProof`
-   - `[YOUTUBE_URL]`
-   - `[FEEDBACK_SESSION_ID]`
-8. Run the final placeholder, claim, secret, URL, and asset audit. Record the repository commit SHA and deployment image/version.
-9. Populate Devpost from `submission/DEVPOST.md`, attach the six screenshots and thumbnail, and verify the under-three-minute public video is embedded.
-10. Stop at the final Devpost confirmation control for the user unless the user separately authorizes submission. After submission, capture the confirmation page and preserve the exact submitted copy.
+```text
+Public browser
+  -> https://marmarlabs.com/retryproof/lab
+  -> existing Copilot Checker API
+  -> Replit production External Access Token + RetryProof HMAC signature
+  -> private RetryProof Codex worker deployment
+  -> one fresh Codex SDK thread in a bounded temporary workspace
+  -> signed candidate and progress stream
+  -> public API deterministic validators and identical-suite replay
+```
+
+The worker is infrastructure for the same RetryProof product, not a second user-facing product. Its separate Replit project gives it a separate app-secret set and deployment lifecycle. It must receive no MarMar Labs database, Stripe, GitHub, session, authentication, or unrelated product credentials.
+
+## Exact worker deployment inputs
+
+- Replit project: existing blank `RetryProof-Codex-Worker` project.
+- Source repository: `https://github.com/marmar9615-cloud/Copilot-Checker`.
+- Package: `artifacts/retryproof-codex-worker`.
+- Deployment type: Reserved VM, **Web server**, Private access set to **Only you**, one exposed port.
+- Build command:
+
+  ```sh
+  pnpm install --frozen-lockfile && pnpm --filter @workspace/retryproof-codex-worker run build
+  ```
+
+- Run command:
+
+  ```sh
+  pnpm --filter @workspace/retryproof-codex-worker run start
+  ```
+
+- Worker secrets only:
+  - `OPENAI_API_KEY`
+  - `OPENAI_ORGANIZATION_ID`
+  - `OPENAI_PROJECT_ID`
+  - `CODEX_MODEL=gpt-5.6-sol`
+  - `RETRYPROOF_CODEX_WORKER_SECRET` — a new random value of at least 32 bytes
+- Replit supplies `PORT`; do not hard-code it.
+
+## Exact public-app configuration
+
+After the private worker publishes successfully:
+
+1. Verify the private worker deployment shows healthy logs and that direct anonymous access is rejected.
+2. Create a **Production External Access Token** in the worker deployment’s Security settings. Store it immediately; Replit reveals it once.
+3. Configure these masked secrets in the existing Copilot Checker project:
+   - `RETRYPROOF_CODEX_WORKER_URL=https://<private-worker-domain>`
+   - `RETRYPROOF_CODEX_WORKER_ACCESS_TOKEN=<production external access token>`
+   - `RETRYPROOF_CODEX_WORKER_SECRET=<same HMAC secret as worker>`
+4. Pull the merged source commit into the existing Replit project.
+5. Republish the existing MarMar Labs deployment.
+6. Verify `GET https://marmarlabs.com/api/retryproof/v1/ready` returns `ready=true` and `liveCodexConfigured=true` without returning any secret or private worker URL.
+
+Replit production External Access Tokens are tied to a published deployment. Every later worker republish requires this rotation order: publish worker, create replacement token, update the main-app secret, republish main app, revoke the old token if it remains listed, then repeat the smoke test.
+
+## Production acceptance sequence
+
+1. Open `https://marmarlabs.com/retryproof/lab` in a clean private browser window.
+2. Load the seeded workflow and confirm the supported sanitized graph renders.
+3. Analyze and approve the at-most-once refund invariant.
+4. Run the four-scenario suite and confirm the timeout trace is red with two mock effects.
+5. Select **Repair with live Codex** and verify the UI shows elapsed time, progress bar, five stages, and signed event-feed updates for the entire run (typically one to three minutes, up to about six within the enforced budget) without appearing frozen.
+6. Confirm the accepted repair provenance says **Fresh Codex**, contains a truncated thread ID and attempt count, and links to the exact implementation commit.
+7. Replay the identical suite and confirm the same event, seed, scenario, and two deliveries are green with one mock effect.
+8. Download the evidence artifact and verify its analysis, repair, and deterministic-validation provenance.
+9. Repeat the entire flow once in a second clean private window and inspect Replit logs for crashes, credential output, unhandled rejections, or timeouts.
+10. Test the clearly labeled validated fallback separately; it must never claim a fresh Codex run.
+
+## Repository, video, and Devpost order
+
+1. Re-run `npm run submission:final-audit`, the secret scan, repository URL checks, and production health checks.
+2. Populate Devpost from `submission/DEVPOST.md`, attach the thumbnail, and verify the under-three-minute public video is embedded.
+3. Submit under the user's explicit authorization, then capture the confirmation state and preserve the exact submitted copy.
 
 ## Deadline controls
 
 - Hard deadline: **July 21, 2026 at 5:00 PM PDT / 7:00 PM CDT**.
-- Internal target: **July 21 at 5:00 PM CDT**, preserving two hours for access, video-processing, or cold-start failures.
-- Keep the hosted demo alive through at least the published winner announcement on **August 12, 2026**.
+- Internal target: **July 21 at 5:00 PM CDT**, preserving two hours for deployment, token rotation, video processing, or access failures.
+- Keep both public app and private worker available through at least the published winner announcement on **August 12, 2026**.

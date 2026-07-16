@@ -6,6 +6,8 @@ RetryProof is a deterministic retry-fault workbench for consequential n8n workfl
 
 > RetryProof provides deterministic evidence that a workflow satisfies a user-approved invariant under a declared fault model. It does **not** prove exactly-once execution, emulate arbitrary n8n behavior, or certify production safety. No real external action is performed.
 
+> **Submission source of truth:** this repository is the standalone reference implementation and keeps its trusted-local/cached-production boundaries intact. The deployed OpenAI Build Week product is the integrated implementation in [`marmar9615-cloud/Copilot-Checker`](https://github.com/marmar9615-cloud/Copilot-Checker), served at [marmarlabs.com/retryproof/lab](https://marmarlabs.com/retryproof/lab/). That implementation adds the separate private Replit Codex worker, deployment access token, independent HMAC binding, signed progress stream, high-reasoning `gpt-5.6-sol` thread, trusted worker-side fixture binding, and ordered 300/330/360/390-second fail-closed timeout ladder. Submission claims and media are verified against the integrated product, not by pretending this reference server has those production capabilities.
+
 ## The two-refund failure
 
 The included demonstration uses a synthetic refund webhook. Delivery one reaches `POST /refunds` and the mock refund succeeds, but its response is lost. The provider retries the same event. Before repair, the ledger records two refund effects for `evt_refund_001`; after a durable reservation is inserted, the identical two-delivery schedule records one.
@@ -192,7 +194,7 @@ docs/                    Architecture, support, deployment, demo, security
 
 ## Demonstration
 
-The official video cut targets 2 minutes 45 seconds and has no live production dependency. See [Demo and fallback plan](docs/DEMO.md). The most important visual comparison is the same event, same seed, same fault phase, and same two deliveries changing from two effects (red) to one (green).
+The final submission video targets 2 minutes 45 seconds and is recorded from the integrated production lab, including the live private-worker progress feed and Fresh Codex provenance. See [Demo and fallback plan](docs/DEMO.md). The most important visual comparison is the same event, same seed, same fault phase, and same two deliveries changing from two effects (red) to one (green).
 
 ## Deployment
 

@@ -1,5 +1,7 @@
 # Privacy and data retention
 
+> This document describes the standalone reference implementation. The submitted integrated product additionally sends only the sanitized repair bundle to a separate private worker; that worker receives no MarMar Labs database, authentication, billing, GitHub, or unrelated product credentials.
+
 ## Data-minimization promise
 
 RetryProof is designed for synthetic or scrubbed workflows. A workflow export can still reveal endpoint URLs, credential references, customer examples, and operational logic, so the safest input is the smallest synthetic reproduction.

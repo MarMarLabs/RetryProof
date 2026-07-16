@@ -1,5 +1,7 @@
 # Security and threat model
 
+> This document describes the standalone reference implementation. The submitted production path preserves these product boundaries but moves live Codex into a separate private Replit worker protected by a deployment access token plus independent HMAC request/stream/candidate binding. Its production evidence is recorded in `submission/VERIFICATION.md`.
+
 ## Security objective
 
 RetryProof must safely turn an untrusted automation export into bounded, reproducible evidence without executing user code, contacting user systems, leaking credentials, or letting a model define its own success.

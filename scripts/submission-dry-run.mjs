@@ -42,19 +42,17 @@ const placeholders = [...content.matchAll(/\[(DEPLOYED_HTTPS_URL|REPOSITORY_URL|
   (match) => match[1],
 );
 const unresolved = expectedExternalFields.filter((field) => placeholders.includes(field));
+const resolved = expectedExternalFields.filter((field) => !unresolved.includes(field));
 
 if (finalMode && unresolved.length > 0) {
   console.error(JSON.stringify({ status: "fail", reason: "external placeholders remain", unresolved }));
   process.exit(1);
 }
-if (!finalMode && unresolved.length !== expectedExternalFields.length) {
-  throw new Error("Dry-run mode expects all four external fields to remain explicit until publication is approved.");
-}
-
 console.log(
   JSON.stringify({
     status: finalMode ? "final-audit-pass" : "local-ready-awaiting-external-state",
     unresolved,
+    resolved,
     submissionFiles: submissionFiles.length,
   }),
 );

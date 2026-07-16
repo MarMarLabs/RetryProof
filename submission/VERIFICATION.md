@@ -1,51 +1,58 @@
-# RetryProof submission-candidate verification
+# RetryProof submission verification
 
-Verified locally on **July 14, 2026 at 8:02 AM CDT**. This is evidence for the local candidate, not a claim that any repository, deployment, video, or Devpost entry has been published.
+Verified on **July 16, 2026 CDT**. This file keeps local, source-control, production, and external-submission proof separate.
 
-## Product and deterministic proof
+## Integrated production source
 
-- `npm test`: **27 files, 120 tests passed**.
-- `npm run test:e2e`: **1 full component journey passed**.
-- `npm run eval:golden`: **4/4 deterministic golden cases passed**, seed `golden-v1`.
-- `npm run demo:rehearse`: **10/10** identical seeded rehearsals passed; `timeout_after_refund` remained `2 deliveries / 2 effects / fail` before repair and `2 deliveries / 1 effect / pass` after repair.
-- Ten separate clean Safari UI journeys also reached the exact `evt_refund_001 · timeout_after_refund · 2 deliveries` green receipt.
-- Production HTTP journey against the final Docker image passed: cached analysis, approval, enforced rejection of production live Codex, red 2, Codex-labeled cached repair, green 1, ZIP artifact, session deletion.
+- Source repository: `marmar9615-cloud/Copilot-Checker`.
+- Submitted implementation commit: `2dd084c` (`Merge pull request #10`).
+- The production Replit workspace was synced exactly to that commit with a clean tree.
+- The public-app artifact manifests were checked before publishing: API server and NeverGuess declare production services; the private RetryProof worker does not claim the public app's production slot.
 
-## Live agent boundaries
+## Production health and live paths
 
-- `npm run verify:live:openai` passed against `gpt-5.6-sol`: one consequential side effect, one invariant, four supported scenarios, and node-grounded evidence. A live request ID was present. GPT-5.6 remained read-only and did not issue a verdict.
-- `npm run verify:live:codex` passed in a trusted local environment: a live Codex thread was present, seven bounded operations were returned for `durable_reservation_before_effect`, five workflow nodes changed, and local validators accepted the resulting eight-node graph plus exact regression fixture. Codex did not own the pass/fail verdict. Production live repair is disabled pending a separately isolated worker.
-- Raw request/thread IDs and credentials are intentionally not copied into this document.
+- `https://marmarlabs.com/`, `https://marmarlabs.com/retryproof/lab/`, and both corresponding `copilot-checker.replit.app` URLs returned HTTP 200 after the final publish.
+- `GET /api/retryproof/v1/ready` returned `ready:true`, PostgreSQL storage, `cachedJudgePath:true`, `customWorkflowPath:true`, `liveAnalysisConfigured:true`, and `liveCodexConfigured:true`.
+- A supported custom four-node workflow exercised the production live-analysis path. The returned provenance was `live`, model `gpt-5.6-sol`, with grounded workflow coverage and no model-owned verdict.
+- The seeded production judge path was run from a clean anonymous session: analyze, human approval, deterministic red suite, one fresh live Codex repair, validator acceptance, identical replay, and evidence receipt.
+- The live Codex repair completed in about 45 seconds. The UI showed a fresh thread, one attempt, five worker-side validator checks, and no fallback provenance.
+- The identical deterministic replay changed the declared timeout scenario from two mock effects to one while keeping the event, fixture, seed, fault, and two deliveries fixed.
+- Current production evidence receipt SHA-256: `a19adb798c06d14e274dc55be275ec39939277c461d8d1a22e73d3516596568b`.
 
-## Build, package, and security
+## Integrated test evidence
 
-- `npm ci`, `npm run lint`, `npm run typecheck`, and `npm run build` passed.
-- A separate clean-package copy, containing neither `.env.local` nor the private research plan, passed install, lint, typecheck, all 120 tests, production build, and asset verification.
-- `npm run security:secrets` scanned **187 text files** and found no unknown credential-shaped values; four exact fake canaries in sanitizer/adversarial tests were allowlisted.
-- `.env.local` is ignored, mode `600`, and absent from the candidate package. The private research plan is also ignored.
-- `npm audit --omit=dev` reports **0 vulnerabilities**.
-- All direct runtime dependencies declare permissive licenses (Apache-2.0, MIT, ISC, or Unlicense).
+- NeverGuess frontend: **14/14 tests passed**, typecheck passed, production build passed.
+- API server: **130 passed / 20 skipped**.
+- RetryProof worker: **10 passed / 1 gated live spec skipped**, typecheck passed, build passed.
+- The final production copy states that a live repair is typically one to three minutes and may take up to about six within the fail-closed budget.
 
-## Production container and database
+## Security and publication boundary
 
-- Image: `retryproof:devpost-ready-final`.
-- Local manifest-list digest: `sha256:9d2e73fddbb469c3897a5865351d885d126d88b3d05bb67f7f087e4f3c816f31`.
-- Runtime user: `retryproof` (non-root).
-- Image inspection confirmed no embedded OpenAI key, database URL, signing secret, `.env.local`, private research plan, tests, docs, or submission media.
-- PostgreSQL 16 readiness: `ready=true`, `storage=postgres`, `schema=ready`, `appliedMigrations=3`.
-- A repeated startup skipped the three already-applied, hash-verified migrations and then started normally.
-- The Docker build context excludes every `.env*` file, private research, tests, docs, and submission media.
+- A fresh `gitleaks dir --redact` scan of the exact integrated source tree found **zero findings**.
+- A targeted credential-pattern scan found only secret-name strings in tests, not credential values.
+- Production credentials, model output, request bodies, private worker URLs, and HMAC material were never included in screenshots, video, documentation, or repository output.
+- Judges receive a new public single-history snapshot rather than the older integrated repository history.
 
 ## Submission media
 
 - Final video: `submission/video/retryproof-demo-final.mp4`.
-- Duration: **165.033333 seconds (2:45.033)**, inside the research plan's 2:45–2:55 release window and below the strict three-minute limit.
-- Media: **1280×720 H.264 at 30 fps; 48 kHz stereo AAC**.
-- Audio measurement: **-19.3 dB mean / -4.7 dB max**.
-- Captions end with the narration at **2:42.000**, followed by a three-second silent evidence hold.
-- Six 1366×768 screenshots and one 1280×720 thumbnail passed the asset verifier.
-- Exact sizes and SHA-256 digests are recorded in `submission/asset-manifest.json`.
+- Duration: **119.300 seconds (1:59.300)**, below the strict three-minute limit.
+- Media: **1366×768 H.264 at 30 fps; 48 kHz mono AAC**.
+- Normalized audio measured **-15.5 dB mean / -1.5 dB max**.
+- SHA-256: `48cc6e7b8ff50fe001aac253a804457759b8367faa28f387d634f77287650753`.
+- The cut uses production UI only and compresses only the live-worker wait. The narration discloses that compression.
+- Six current production screenshots are 1366×768 PNGs and cover import, contract, red counterexample, fresh Codex acceptance, green comparison, and evidence receipt.
 
-## Intentionally unresolved external proof
+## Public judge artifacts
 
-The following are false until performed with the user's explicit approval: public repository, hosted HTTPS demo, public YouTube playback, `/feedback` Session ID, Devpost draft completion, and Devpost submission confirmation. See `submission/EXTERNAL-HANDOFF.md` for the exact sequence.
+- Public judge snapshot: `https://github.com/marmar9615-cloud/RetryProof-Build-Week-2026`.
+- Snapshot commit: `66da76582b80505ccb19c025fdade9d4d42a02ba`.
+- The snapshot is a clean, single-history judge package under the personal `marmar9615-cloud` account; anonymous raw-file access returned HTTP 200 and a redacted gitleaks scan found zero findings.
+- Public demo video: `https://youtu.be/4Oaie-WLKAc`.
+- Anonymous YouTube page and oEmbed checks returned HTTP 200 with the expected title, MarMar Labs channel, and custom thumbnail.
+- YouTube reported no copyright or Community Guidelines issues; English automatic captions are published.
+- Majority-core Codex `/feedback` Session ID: `019f5e19-b54f-7862-8023-f0f4251a5a0f`.
+
+## Remaining external proof
+
+Only Devpost's submitted confirmation state remains false until the final submission completes and is checked live.

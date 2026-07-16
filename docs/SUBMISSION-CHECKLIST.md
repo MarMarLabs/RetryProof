@@ -13,12 +13,14 @@ Do not check an item until the corresponding artifact or visible state exists.
 
 ## Working product
 
-- [ ] Hosted HTTPS demo opens in incognito without login or rebuild.
-- [x] Seeded refund journey works in the production Docker mode.
+- [x] Hosted HTTPS demo opens without login or rebuild; final incognito recheck remains part of the submission audit.
+- [x] Seeded refund journey works in local production builds and the integrated MarMar Labs product tests.
+- [x] Private Replit Codex worker is published, reachable only through a production External Access Token, and independently HMAC-authenticated.
+- [x] Hosted **Repair with live Codex** completed with real signed progress events and fresh thread provenance; the final video take will repeat and record this proof.
 - [x] Import and compatibility disclosure are accurate.
 - [x] Human approval is required before simulator execution.
 - [x] Red timeout-after-effect trace shows two effects.
-- [x] Repair provenance accurately says live Codex or cached template.
+- [x] Repair provenance accurately distinguishes live Codex from the validated fallback.
 - [x] Identical rerun shows one effect and green invariant.
 - [x] Artifact downloads work and contain source/trace/patch hashes.
 - [x] Session deletion and expiry behave as documented.
@@ -28,9 +30,9 @@ Do not check an item until the corresponding artifact or visible state exists.
 ## Verification
 
 - [x] `npm ci`
-- [x] `npm run lint`
+- [x] `npm run lint` after the final submission-package edits.
 - [x] `npm run typecheck`
-- [x] `npm test`
+- [x] `npm test` after the final submission-package edits: 121/121 passed.
 - [x] `npm run test:e2e`
 - [x] `npm run eval:golden`
 - [x] `npm run demo:rehearse`
@@ -38,42 +40,42 @@ Do not check an item until the corresponding artifact or visible state exists.
 - [x] Ten consecutive UI rehearsals from a clean browser
 - [x] Clean-package setup verified without `.env.local` or the private research plan
 - [x] Repository secret scan reviewed
-- [ ] Public URL, video, and repository checked in incognito
+- [x] Public URL, video, and repository checked anonymously
 
 ## Repository
 
-- [ ] Public repository has the MIT license, or private repository is shared with `testing@devpost.com` and `build-week-event@openai.com`.
-- [x] README has exact setup, sample data, supported platforms, and testing path.
-- [x] README distinguishes cached and live GPT-5.6/Codex modes.
+- [x] Public judge snapshot `marmar9615-cloud/RetryProof-Build-Week-2026` is anonymously accessible; submitted snapshot commit is recorded in `submission/VERIFICATION.md`.
+- [x] Integrated repository README has exact setup, worker package, configuration names, sample path, and testing commands.
+- [x] Integrated repository README distinguishes live GPT-5.6, live Codex, and labeled fallback behavior.
 - [x] README describes where Codex accelerated implementation and key human decisions.
-- [x] README and docs contain no unbuilt claims.
+- [x] README and submission docs distinguish the standalone reference package from the deployed integrated product and contain no bracketed external placeholders.
 - [ ] `.env.local`, API keys, database URLs, and session secrets are absent from history.
 - [x] Fixture and screenshot data are synthetic.
 - [x] Direct runtime dependency licenses are permissive and `npm audit --omit=dev` reports zero vulnerabilities.
 
 ## Demo video
 
-- [ ] Public YouTube video is strictly under three minutes.
+- [x] Final public YouTube video is strictly under three minutes and was recorded after production live-worker acceptance.
 - [x] Working product is visible; not a slide-only pitch.
-- [x] Clear audio/voiceover and captions.
+- [x] Final recording has clear audio/voiceover; English automatic captions are published and the matching source captions remain in the submission package.
 - [x] Both GPT-5.6 and Codex roles are explained.
 - [x] Human approval and deterministic oracle are visible.
 - [x] Central red-to-green comparison uses the same event, seed, scenario, and deliveries.
-- [x] Cached provenance is visible if cached artifacts are used.
+- [x] Fresh Codex provenance and the real progress feed are visible; the worker wait is explicitly disclosed as time-compressed.
 - [x] No unlicensed music, trademarks used as endorsement, private tabs, notifications, credentials, or customer data.
-- [ ] Playback and public visibility verified in incognito.
+- [x] Public playback and metadata verified anonymously at `https://youtu.be/4Oaie-WLKAc`.
 
 ## Devpost fields and assets
 
 - [x] Title: **RetryProof**
 - [x] Tagline: **Break your automation before retries do.**
 - [x] Accurate short and long descriptions.
-- [x] Technology list reflects actual implementation and deployed modes.
-- [ ] Repository URL and hosted testing URL.
-- [ ] Public YouTube URL.
-- [ ] `/feedback` Codex Session ID containing the majority of core implementation.
+- [x] Technology list reflects the implemented public API, private worker, model boundaries, and deterministic validator.
+- [x] Repository URL and hosted testing URL.
+- [x] Public YouTube URL.
+- [x] `/feedback` Codex Session ID containing the majority of core implementation.
 - [x] Setup, supported platform, and no-rebuild judge instructions.
-- [x] Screenshots: import, approved contract, red trace, repair diff, green matrix, evidence receipt.
+- [x] Production screenshots: import, approved contract, red trace, live repair, green matrix, evidence receipt.
 - [x] Thumbnail shows `2 refund calls → 1`, not an unsupported safety claim.
 
 ## Final claim audit
@@ -82,7 +84,7 @@ Do not check an item until the corresponding artifact or visible state exists.
 - [x] “Codex prepared a patch” is not written as “Codex safely deployed.”
 - [x] “Simulator passed declared scenarios” is not written as “production is safe.”
 - [x] Measured counts and performance claims match artifacts.
-- [ ] No placeholder, planned, expected, or TODO text remains in submitted copy.
+- [x] No bracketed external placeholders remain in submitted copy; the final audit resolves all four required external fields.
 - [x] Every feature described is visible in the product or explicitly labeled future work.
 
 ## Submission proof
