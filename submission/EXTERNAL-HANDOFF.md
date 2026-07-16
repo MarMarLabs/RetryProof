@@ -9,7 +9,7 @@ Everything below changes external state. Do not perform an applicable step until
 - The public judge snapshot is `https://github.com/marmar9615-cloud/RetryProof-Build-Week-2026` at commit `66da76582b80505ccb19c025fdade9d4d42a02ba`.
 - The final 1:59.300 demo is public at `https://youtu.be/4Oaie-WLKAc`.
 - Majority-core Codex `/feedback` Session ID: `019f5e19-b54f-7862-8023-f0f4251a5a0f`.
-- The remaining external state is the Devpost submitted confirmation.
+- Devpost submission `1092862` is submitted and published at `https://devpost.com/software/retryproof`.
 
 ## Prepared production topology
 

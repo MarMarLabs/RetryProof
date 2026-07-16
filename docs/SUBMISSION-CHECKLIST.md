@@ -7,7 +7,7 @@ Do not check an item until the corresponding artifact or visible state exists.
 ## Eligibility and entry
 
 - [ ] Entrant and every teammate satisfy age, geography, affiliation, and official-rules eligibility.
-- [ ] RetryProof is entered in exactly one track: **Developer Tools**.
+- [x] RetryProof is entered in exactly one track: **Developer Tools**.
 - [ ] New work is distinguishable through dated commits and Codex session history.
 - [x] No disallowed third-party, customer, or credential data is included in the local candidate; the secret scanner passes with only four exact synthetic canaries.
 
@@ -89,7 +89,7 @@ Do not check an item until the corresponding artifact or visible state exists.
 
 ## Submission proof
 
-- [ ] Capture the completed Devpost confirmation state.
-- [ ] Record final repository commit, deployment URL, video URL, and `/feedback` ID.
-- [ ] Preserve exact submitted copy and asset filenames.
-- [ ] Do not confuse a draft form with a submitted entry.
+- [x] Captured the completed Devpost confirmation state: submission `1092862`, status **Submitted**.
+- [x] Recorded final repository commit, deployment URL, video URL, and `/feedback` ID.
+- [x] Preserved exact submitted copy and asset filenames.
+- [x] Verified the project state is `published`, is attached to OpenAI Build Week, and the public Devpost page returns HTTP 200.

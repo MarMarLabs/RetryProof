@@ -53,6 +53,10 @@ Verified on **July 16, 2026 CDT**. This file keeps local, source-control, produc
 - YouTube reported no copyright or Community Guidelines issues; English automatic captions are published.
 - Majority-core Codex `/feedback` Session ID: `019f5e19-b54f-7862-8023-f0f4251a5a0f`.
 
-## Remaining external proof
+## Devpost submission confirmation
 
-Only Devpost's submitted confirmation state remains false until the final submission completes and is checked live.
+- Project: `RetryProof` (`https://devpost.com/software/retryproof`).
+- OpenAI Build Week submission ID: `1092862`.
+- Status: **Submitted** at `2026-07-16T19:13:48.501-04:00`.
+- The authenticated project state is `published` and lists OpenAI Build Week with the hosted judge URL.
+- The public Devpost page returned HTTP 200 after submission.
