@@ -12,7 +12,8 @@
 8. Select **Repair with live Codex**. Watch the elapsed timer, progress bar, five-stage status row, and signed event feed. A fresh run typically takes one to three minutes and can take up to about six; the timer and signed events keep updating the whole time.
 9. Confirm the accepted artifact says **Fresh Codex**, shows a truncated thread identifier and attempt count, and lists the deterministic validator checks.
 10. Select **Replay the identical suite** and confirm the same event, scenario, seed, and two deliveries now produce one refund effect and **Pass**.
-11. Select **Download evidence ZIP** and inspect its patch, provenance, before/after hashes, and limitations.
+11. Inspect the **Proof Flight Recorder**. Its before/after workflow paths, four-scenario matrix, changed nodes, and evidence references are derived from the accepted run data; the graph also has a text alternative and the raw JSON patch remains available as a disclosure.
+12. Select **Download evidence ZIP** and inspect its patch, provenance, before/after hashes, and limitations.
 
 Expected completion time: typically three to five minutes after the page loads, and up to about eight if the fresh Codex run uses its full budget.
 

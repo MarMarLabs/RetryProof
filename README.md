@@ -24,7 +24,7 @@ The included demonstration uses a synthetic refund webhook. Delivery one reaches
 - **GPT-5.6** performs read-only semantic analysis over a canonical, sanitized graph. It identifies likely consequential writes, traces candidate business keys, and proposes structured invariants and supported scenarios. Its output is a proposal, never a verdict.
 - **The user** approves or edits every invariant before it can run.
 - **The deterministic simulator** owns pass/fail. It uses a logical clock, fixed seed, mock HTTP adapter, reservation store, side-effect ledger, and explicit invariant oracle.
-- **Codex** receives only sanitized inputs in a bounded temporary workspace during an explicitly enabled trusted-local run. It emits a bounded JSON Patch, repair manifest, explanation, and regression fixture. A deterministic validator—not Codex—decides whether the result is acceptable. Production uses the labeled cached repair until live execution moves to a separately isolated worker.
+- **Codex** receives only sanitized inputs in a bounded temporary workspace. It emits a bounded JSON Patch, repair manifest, and explanation. A deterministic validator—not Codex—decides whether the result is acceptable. This standalone reference server keeps live Codex limited to explicitly enabled trusted-local runs; the integrated hosted product uses the separate private Replit worker described below and offers a clearly labeled validated fallback if that worker is unavailable.
 
 This closed proof loop is the product; the models are not used as an ungrounded chat surface.
 
@@ -140,6 +140,8 @@ Read [Security and threat model](docs/SECURITY.md) and [Privacy and retention](d
 
 ## Architecture
 
+### Standalone reference implementation
+
 ```mermaid
 flowchart LR
     U["Browser"] --> A["Next.js UI and API"]
@@ -158,6 +160,26 @@ flowchart LR
 
 Detailed trust boundaries and request flows are in [Architecture](docs/ARCHITECTURE.md).
 
+### Integrated hosted judge path
+
+```mermaid
+flowchart LR
+    B["Anonymous judge browser"] --> P["Public React and Express app"]
+    P --> D[("Sanitized 24-hour session state")]
+    P --> G["GPT-5.6 grounded contract proposal"]
+    G --> H["Human approval"]
+    H --> S["Deterministic simulator"]
+    S --> P
+    P -->|"deployment token plus HMAC-bound request"| W["Private Replit Codex worker"]
+    W --> X["Fresh high-reasoning Codex SDK thread"]
+    X --> V["Strict patch, source, fixture, secret, and replay validators"]
+    V -->|"signed progress and bounded candidate"| P
+    P --> S
+    S --> E["SHA-256 evidence receipt"]
+```
+
+The worker has no application database, billing, GitHub, or auth credentials. Its Codex workspace is temporary, read-only, network-disabled, and approval-free. The public API independently authenticates the deployment gateway, binds each request and signed event with HMAC, rejects replay, and accepts no green result until the identical deterministic fixture passes.
+
 ## Supported platforms
 
 - Development and production: Node.js 20+ on macOS or Linux.
@@ -171,7 +193,7 @@ Windows is not part of the judged support surface. Live Codex repair is a truste
 
 The essential human product and engineering decisions were to make a narrow claim, support only explicit node semantics, keep all effects mock-only, require approval before every invariant, and let a deterministic oracle—not a model—own the verdict. The same fault schedule must be rerun after repair, and every green artifact must repeat its limitations.
 
-Codex accelerated repository scaffolding, implementation across the import/simulator/platform/UI boundaries, test generation, repair-contract design, documentation, and verification iteration. Those contributions remain reviewable in dated Codex sessions and commits. Before submission, the repository owner must record the `/feedback` Session ID containing the majority of the core implementation; that ID is intentionally not fabricated in this README.
+Codex accelerated repository scaffolding, implementation across the import/simulator/platform/UI boundaries, regression-test generation, repair-contract design, private-worker debugging, deployment recovery, documentation, and production verification. The collaboration was deliberately adversarial: implementation agents wrote bounded changes, separate agents reviewed security and judge experience, and deterministic tests—not the authoring agent—decided acceptance. The majority-core `/feedback` Session ID is `019f5e19-b54f-7862-8023-f0f4251a5a0f`.
 
 ## Repository map
 
@@ -194,7 +216,7 @@ docs/                    Architecture, support, deployment, demo, security
 
 ## Demonstration
 
-The final submission video targets 2 minutes 45 seconds and is recorded from the integrated production lab, including the live private-worker progress feed and Fresh Codex provenance. See [Demo and fallback plan](docs/DEMO.md). The most important visual comparison is the same event, same seed, same fault phase, and same two deliveries changing from two effects (red) to one (green).
+The submitted 1:59.300 video is recorded from the integrated production lab, including the live private-worker progress feed and Fresh Codex provenance. See [Demo and fallback plan](docs/DEMO.md). The most important visual comparison is the same event, same seed, same fault phase, and same two deliveries changing from two effects (red) to one (green).
 
 ## Deployment
 
