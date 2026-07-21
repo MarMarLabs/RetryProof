@@ -16,7 +16,7 @@ Production proof was refreshed on **July 20, 2026 CDT**. This file keeps local, 
 - ZIP integrity passed. The archive contains 10 files total: `manifest.json` plus nine path-sorted payload entries. Every listed byte length and SHA-256 digest matched; the external canonical receipt is byte-identical to the capsule's `receipt.json`.
 - The receipt records `before.effectCount=2`, `before.passed=false`, `after.effectCount=1`, `after.passed=true`, approved invariant `refunds_at_most_once`, `analysis=gpt-5.6-informed-template`, `repair=codex-live`, and `deterministicValidation=live`.
 - `submission/screenshots/08-black-box-replay-production.png` is the clean 1366×768 production capture of the current evidence view. No credential, request body, private worker URL, or raw/unvalidated model output is included.
-- The existing public video remains the verified baseline. Final repository/CI identifiers and the refreshed Devpost state are recorded only after those later steps complete.
+- The existing public video remains the verified baseline. Final repository/CI identifiers and the refreshed Devpost version 5 state are recorded below.
 
 ## Integrated production source
 
@@ -78,4 +78,5 @@ Production proof was refreshed on **July 20, 2026 CDT**. This file keeps local, 
 - OpenAI Build Week submission ID: `1092862`.
 - Status: **Submitted** at `2026-07-16T19:13:48.501-04:00`.
 - The authenticated project state is `published` and lists OpenAI Build Week with the hosted judge URL.
+- The official Devpost plugin refreshed the project to version 5 at `2026-07-20T20:36:20.388-04:00` and re-submitted the exact required Build Week answers. Readback confirmed the final description includes Black Box Replay, the reproducibility capsule, and the no-exactly-once/no-production-safety limitation; submission `1092862` remained **Submitted**.
 - The public Devpost page returned HTTP 200 after submission.

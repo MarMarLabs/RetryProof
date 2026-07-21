@@ -9,7 +9,7 @@ Everything below changes external state. Do not perform an applicable step until
 - The public judge snapshot is `https://github.com/marmar9615-cloud/RetryProof-Build-Week-2026` at final judge-readable evidence package commit `2b245758796096a960619dde1b51b35276f85307`.
 - The final 1:59.300 demo is public at `https://youtu.be/4Oaie-WLKAc`.
 - Majority-core Codex `/feedback` Session ID: `019f5e19-b54f-7862-8023-f0f4251a5a0f`.
-- Devpost submission `1092862` is submitted and published at `https://devpost.com/software/retryproof`.
+- Devpost submission `1092862` is **Submitted** and published at `https://devpost.com/software/retryproof`; project version 5 contains the final Black Box Replay/capsule description, verified video, personal public repository, hosted judge path, and required Build Week answers.
 
 ## Prepared production topology
 
