@@ -1,12 +1,29 @@
 # RetryProof submission verification
 
-Verified on **July 16, 2026 CDT**. This file keeps local, source-control, production, and external-submission proof separate.
+Production proof was refreshed on **July 20, 2026 CDT**. This file keeps local, source-control, production, artifact, and external-submission proof separate.
+
+## July 20 final-release production proof
+
+- Integrated feature commit `d2f04b6` adds the data-derived Black Box Replay, accessible completion focus/status, canonical receipt endpoint, and reproducibility capsule. Current personal-account main `13cc94d` contains that commit.
+- The public app was guarded-republished without changing the private worker. `https://marmarlabs.com/`, `/api/healthz`, `/api/retryproof/v1/ready`, and `/retryproof/lab/` stayed HTTP 200 during the proof run.
+- A clean anonymous session remained on **Import** after loading the seeded workflow and advanced only after **Analyze retry risk**. The proposal was honestly labeled `GPT-5.6-informed seeded contract` / `Seeded · cached`.
+- Human approval preceded execution. The four-scenario deterministic suite produced the expected RED state with two mock effects for the retry-after-effect path.
+- **Repair with live Codex** was selected exactly once. The UI showed signed **Worker accepted**, then **Fresh Codex · validators live**, one attempt, and no fallback. The fresh repair completed in about 34 seconds in the observed browser journey.
+- Replaying the identical suite produced GREEN with one effect. All four scenario rows improved (`2→1`, `2→1`, `1→0`, `2→1`) under their original scenario IDs and fault phases.
+- Black Box Replay paired the accepted `duplicate_delivery` traces, confirmed the first two events matched, and isolated event 3: `effect_replayed` before versus `reservation_conflict` after. Its own copy keeps the no-production-safety/no-exactly-once limitation visible.
+- Canonical receipt: `submission/evidence/production-receipt-7443835dd9c7.json`, SHA-256 `7443835dd9c79481b977e1a644f9ccc3b74f507faf7c3065f8d72a736b849817`.
+- Reproducibility capsule: `submission/evidence/production-capsule-7443835dd9c7.zip`, SHA-256 `3dba14b8cc2c160ebfdb41d12c519900035b157d068da7653e34f1ace5d37bab`.
+- ZIP integrity passed. The archive contains 10 files total: `manifest.json` plus nine path-sorted payload entries. Every listed byte length and SHA-256 digest matched; the external canonical receipt is byte-identical to the capsule's `receipt.json`.
+- The receipt records `before.effectCount=2`, `before.passed=false`, `after.effectCount=1`, `after.passed=true`, approved invariant `refunds_at_most_once`, `analysis=gpt-5.6-informed-template`, `repair=codex-live`, and `deterministicValidation=live`.
+- `submission/screenshots/08-black-box-replay-production.png` is the clean 1366×768 production capture of the current evidence view. No credential, request body, private worker URL, or raw/unvalidated model output is included.
+- The existing public video remains the verified baseline. Final repository/CI identifiers and the refreshed Devpost state are recorded only after those later steps complete.
 
 ## Integrated production source
 
 - Source repository: `marmar9615-cloud/Copilot-Checker`.
-- Submitted implementation commit: `2dd084c` (`Merge pull request #10`).
-- The production Replit workspace was synced exactly to that commit with a clean tree.
+- Submitted implementation baseline: `2dd084c` (`Merge pull request #10`).
+- Final judge-readable feature source: `d2f04b6`; current integrated main at verification time: `13cc94d`.
+- The public Replit deployment was refreshed with the integrated source while the separate private worker remained unchanged.
 - The public-app artifact manifests were checked before publishing: API server and NeverGuess declare production services; the private RetryProof worker does not claim the public app's production slot.
 
 ## Production health and live paths
@@ -15,13 +32,13 @@ Verified on **July 16, 2026 CDT**. This file keeps local, source-control, produc
 - `GET /api/retryproof/v1/ready` returned `ready:true`, PostgreSQL storage, `cachedJudgePath:true`, `customWorkflowPath:true`, `liveAnalysisConfigured:true`, and `liveCodexConfigured:true`.
 - A supported custom four-node workflow exercised the production live-analysis path. The returned provenance was `live`, model `gpt-5.6-sol`, with grounded workflow coverage and no model-owned verdict.
 - The seeded production judge path was run from a clean anonymous session: analyze, human approval, deterministic red suite, one fresh live Codex repair, validator acceptance, identical replay, and evidence receipt.
-- The live Codex repair completed in about 45 seconds. The UI showed a fresh thread, one attempt, five worker-side validator checks, and no fallback provenance.
+- The latest live Codex repair completed in about 34 seconds. The UI showed signed worker acceptance, a fresh thread, one attempt, validator acceptance, and no fallback provenance.
 - The identical deterministic replay changed the declared timeout scenario from two mock effects to one while keeping the event, fixture, seed, fault, and two deliveries fixed.
-- Current production evidence receipt SHA-256: `a19adb798c06d14e274dc55be275ec39939277c461d8d1a22e73d3516596568b`.
+- Current production evidence receipt SHA-256: `7443835dd9c79481b977e1a644f9ccc3b74f507faf7c3065f8d72a736b849817`.
 
 ## Integrated test evidence
 
-- NeverGuess frontend: **14/14 tests passed**, typecheck passed, production build passed.
+- NeverGuess frontend: **23/23 tests passed**, typecheck passed, production build passed.
 - API server: **130 passed / 20 skipped**.
 - RetryProof worker: **10 passed / 1 gated live spec skipped**, typecheck passed, build passed.
 - The final production copy states that a live repair is typically one to three minutes and may take up to about six within the fail-closed budget.
@@ -41,13 +58,14 @@ Verified on **July 16, 2026 CDT**. This file keeps local, source-control, produc
 - Normalized audio measured **-15.5 dB mean / -1.5 dB max**.
 - SHA-256: `48cc6e7b8ff50fe001aac253a804457759b8367faa28f387d634f77287650753`.
 - The cut uses production UI only and compresses only the live-worker wait. The narration discloses that compression.
-- Six current production screenshots are 1366×768 PNGs and cover import, contract, red counterexample, fresh Codex acceptance, green comparison, and evidence receipt.
+- The submission package contains the six original 1366×768 walkthrough captures, the prior Proof Flight Recorder capture, and the current 1366×768 Black Box Replay/capsule production capture.
 
 ## Public judge artifacts
 
 - Public judge snapshot: `https://github.com/marmar9615-cloud/RetryProof-Build-Week-2026`.
-- Snapshot commit: `66da76582b80505ccb19c025fdade9d4d42a02ba`.
+- Final judge-readable evidence package commit: `2b245758796096a960619dde1b51b35276f85307`.
 - The snapshot is a clean, single-history judge package under the personal `marmar9615-cloud` account; anonymous raw-file access returned HTTP 200 and a redacted gitleaks scan found zero findings.
+- The public package has no GitHub Actions workflow; focused frontend test/typecheck/build, API typecheck/build, exact integrated-source parity, artifact verification, and redacted secret scanning passed locally before the package commit. Its six database-backed API snapshot tests self-skipped because the standalone package has no test database.
 - Public demo video: `https://youtu.be/4Oaie-WLKAc`.
 - Anonymous YouTube page and oEmbed checks returned HTTP 200 with the expected title, MarMar Labs channel, and custom thumbnail.
 - YouTube reported no copyright or Community Guidelines issues; English automatic captions are published.

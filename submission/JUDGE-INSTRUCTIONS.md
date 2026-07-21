@@ -1,5 +1,7 @@
 # RetryProof judge instructions
 
+> The complete July 20 hosted flow below is verified from a clean anonymous production session. Exact receipt, capsule, and source evidence is recorded in `submission/VERIFICATION.md`.
+
 ## No-rebuild path
 
 1. Open `https://marmarlabs.com/retryproof/lab/` in a current desktop browser. No account is required.
@@ -12,8 +14,8 @@
 8. Select **Repair with live Codex**. Watch the elapsed timer, progress bar, five-stage status row, and signed event feed. A fresh run typically takes one to three minutes and can take up to about six; the timer and signed events keep updating the whole time.
 9. Confirm the accepted artifact says **Fresh Codex**, shows a truncated thread identifier and attempt count, and lists the deterministic validator checks.
 10. Select **Replay the identical suite** and confirm the same event, scenario, seed, and two deliveries now produce one refund effect and **Pass**.
-11. Inspect the **Proof Flight Recorder**. Its before/after workflow paths, four-scenario matrix, changed nodes, and evidence references are derived from the accepted run data; the graph also has a text alternative and the raw JSON patch remains available as a disclosure.
-12. Select **Download evidence ZIP** and inspect its patch, provenance, before/after hashes, and limitations.
+11. Inspect the **Proof Flight Recorder** and **Black Box Replay**. Confirm the replay shows the first event that actually differs between the accepted before and after traces; the workflow graph, four-scenario matrix, changed nodes, and evidence references are also derived from the accepted run data. The graph has a text alternative and the raw JSON patch remains available as a disclosure.
+12. Select **Download reproducibility capsule**. Confirm it contains the approved contract, paired before/after traces, bounded repair, patched workflow, exact canonical `receipt.json`, `LIMITATIONS.txt`, and `manifest.json`. The manifest lists each other archive path in sorted order with its byte length and SHA-256 digest.
 
 Expected completion time: typically three to five minutes after the page loads, and up to about eight if the fresh Codex run uses its full budget.
 
@@ -30,6 +32,7 @@ Expected completion time: typically three to five minutes after the page loads, 
 - The seeded analysis contract is cached and labeled; the repair is fresh only when its provenance says **Fresh Codex** and includes a live thread identifier.
 - A green result applies only to the approved invariant, exact snapshot, fixture, and declared deterministic fault model.
 - RetryProof does not prove exactly-once execution or production safety.
+- The capsule manifest supports byte-consistency checks only; it does not establish signer identity.
 
 ## If the hosted path is unavailable
 

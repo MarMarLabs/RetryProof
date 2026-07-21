@@ -8,8 +8,18 @@
 - [x] `screenshots/04-codex-repair.png` shows the deployed accepted **Fresh Codex** artifact, validator checks, and truncated thread provenance.
 - [x] `screenshots/05-green-comparison.png` shows the deployed before `2/fail` and after `1/pass` comparison using the identical suite.
 - [x] `screenshots/06-evidence-receipt.png` shows the deployed hash, limitations, and **Download evidence ZIP** control.
+- [x] `screenshots/07-proof-flight-recorder.png` preserves the prior production Proof Flight Recorder release for comparison.
+- [x] `screenshots/08-black-box-replay-production.png` is the July 20 clean production capture of the live `2 → 1` result, reproducibility-capsule control, accepted before/after paths, and data-derived Black Box Replay.
 
-The six files currently present are the final production screenshot set captured after the live worker passed.
+Screenshots 01–07 preserve the earlier verified production path. Screenshot 08 is the current judge-readable evidence release and is bound to the fresh production receipt recorded in `submission/VERIFICATION.md`.
+
+## July 20 final-release refresh
+
+- [x] Capture **Black Box Replay** showing the first actual before/after trace divergence from accepted production traces.
+- [x] Capture the **Download reproducibility capsule** control and verify the downloaded archive contains the approved contract, paired traces, bounded repair, exact canonical receipt, limitations, and deterministic per-file SHA-256 manifest.
+- [x] Keep the manifest limitation legible: it verifies byte consistency only and does not establish signer identity, exactly-once execution, or production safety.
+- [x] Recheck the final evidence view from a clean anonymous production session after the guarded public-app publish.
+- [x] Preserve the exact production receipt and capsule under `submission/evidence/` for offline judge inspection.
 
 ## Image rules
 
@@ -35,6 +45,8 @@ The six files currently present are the final production screenshot set captured
 - [x] `video/YOUTUBE.md`.
 - [x] Final audio level, caption timing, codecs, resolution, and duration were re-verified after replacement.
 - [x] Public YouTube playback verified anonymously at `https://youtu.be/4Oaie-WLKAc`; oEmbed identifies the expected title and MarMar Labs channel.
+
+The verified video and URL remain the submission baseline. Do not replace `https://youtu.be/4Oaie-WLKAc` unless a new cut is uploaded and independently rechecked for duration, playback, captions, claims, and privacy.
 
 ## External placeholders still requiring real values
 

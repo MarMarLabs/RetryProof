@@ -4,9 +4,9 @@ Everything below changes external state. Do not perform an applicable step until
 
 ## Current release state
 
-- The private-worker implementation is merged at integrated commit `2dd084c`, and both Replit deployments are healthy.
-- The public app readiness endpoint reports live GPT-5.6 and live Codex configured.
-- The public judge snapshot is `https://github.com/marmar9615-cloud/RetryProof-Build-Week-2026` at commit `66da76582b80505ccb19c025fdade9d4d42a02ba`.
+- Integrated personal-account main is at `13cc94d` (`marmar9615-cloud/Copilot-Checker`) and contains judge-readable evidence feature commit `d2f04b6`; both Replit deployments are healthy.
+- The public app readiness endpoint reports live GPT-5.6 and live Codex configured, and the July 20 clean anonymous production journey reached signed worker acceptance and a fresh green replay.
+- The public judge snapshot is `https://github.com/marmar9615-cloud/RetryProof-Build-Week-2026` at final judge-readable evidence package commit `2b245758796096a960619dde1b51b35276f85307`.
 - The final 1:59.300 demo is public at `https://youtu.be/4Oaie-WLKAc`.
 - Majority-core Codex `/feedback` Session ID: `019f5e19-b54f-7862-8023-f0f4251a5a0f`.
 - Devpost submission `1092862` is submitted and published at `https://devpost.com/software/retryproof`.

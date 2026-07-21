@@ -23,6 +23,8 @@ Do not check an item until the corresponding artifact or visible state exists.
 - [x] Repair provenance accurately distinguishes live Codex from the validated fallback.
 - [x] Identical rerun shows one effect and green invariant.
 - [x] Artifact downloads work and contain source/trace/patch hashes.
+- [x] Final-release Black Box Replay shows the first actual divergence in accepted before/after trace data.
+- [x] Final-release reproducibility capsule contains the approved contract, paired traces, bounded repair, exact canonical receipt, limitations, and a deterministic path-sorted per-file SHA-256 manifest.
 - [x] Session deletion and expiry behave as documented.
 - [x] Unsupported nodes are not approximated.
 - [x] UI and evidence state that green is not exactly-once or production-safety proof.
@@ -75,7 +77,7 @@ Do not check an item until the corresponding artifact or visible state exists.
 - [x] Public YouTube URL.
 - [x] `/feedback` Codex Session ID containing the majority of core implementation.
 - [x] Setup, supported platform, and no-rebuild judge instructions.
-- [x] Production screenshots: import, approved contract, red trace, live repair, green matrix, evidence receipt.
+- [x] Production screenshots: import, approved contract, red trace, live repair, green matrix, canonical receipt, Proof Flight Recorder, and Black Box Replay.
 - [x] Thumbnail shows `2 refund calls → 1`, not an unsupported safety claim.
 
 ## Final claim audit
@@ -83,6 +85,7 @@ Do not check an item until the corresponding artifact or visible state exists.
 - [x] “GPT-5.6 proposed” is not written as “GPT-5.6 proved.”
 - [x] “Codex prepared a patch” is not written as “Codex safely deployed.”
 - [x] “Simulator passed declared scenarios” is not written as “production is safe.”
+- [x] The capsule manifest is described as a byte-consistency aid, not signer authentication, exactly-once proof, tamper-proofing, or production certification.
 - [x] Measured counts and performance claims match artifacts.
 - [x] No bracketed external placeholders remain in submitted copy; the final audit resolves all four required external fields.
 - [x] Every feature described is visible in the product or explicitly labeled future work.

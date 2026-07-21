@@ -1,6 +1,6 @@
 # RetryProof — Devpost submission copy
 
-> Final submission copy for the verified private-worker production architecture. Live-worker claims are bound to the recorded production acceptance evidence in `submission/VERIFICATION.md`.
+> Final-release copy. The private-worker production flow, July 20 Black Box Replay, and reproducibility capsule are bound to the fresh acceptance evidence in `submission/VERIFICATION.md`. Cached GPT-5.6 analysis and fresh Codex repair remain explicitly labeled as different provenance states.
 
 ## Title
 
@@ -16,11 +16,11 @@ Developer Tools
 
 ## Short description
 
-RetryProof imports a sanitized n8n workflow, lets GPT-5.6 propose a user-approved reliability contract, deterministically exposes retry failures, and asks Codex for a bounded repair that must pass the identical fault fixture before it earns a green receipt.
+One lost response can turn one refund request into two effects. RetryProof lets GPT-5.6 propose a reliability contract, requires human approval, asks Codex for a bounded repair, and gives the verdict only to deterministic replay.
 
 ## Approximately 100 words
 
-One lost webhook response can make an automation repeat a consequential side effect. RetryProof turns that hidden risk into a reproducible flight test. It sanitizes a supported n8n workflow, then GPT-5.6 proposes the side effect, business key, invariant, and relevant retry scenarios. A human approves the contract before any test runs. RetryProof’s deterministic simulator injects a declared fault and records a red counterexample—two synthetic refund effects for one event. Codex returns a tightly bounded reservation patch and changed-node manifest. The worker binds the trusted regression fixture, then validators replay the same event, seed, fault, and two deliveries to produce one effect and a reviewable green receipt.
+One lost webhook response can turn one refund request into two effects. RetryProof makes that failure visible before deployment. It sanitizes a supported n8n workflow; GPT-5.6 proposes the effect, business key, invariant, and fault scenarios; and a human approves the contract. A deterministic simulator records the red counterexample. Codex then returns a bounded reservation patch, which strict validators bind to the exact source and fixture before replay. Black Box Replay surfaces the first actual trace divergence. The reproducibility capsule packages the approved contract, paired traces, repair, exact canonical receipt, and deterministic per-file SHA-256 manifest—without claiming signer identity, exactly-once execution, or production safety.
 
 ## Longer project description
 
@@ -36,7 +36,7 @@ The deterministic simulator then executes only declared node semantics, mock HTT
 
 For a live repair, the public API sends only the sanitized graph, approved invariant, failing trace, and exact fixture to a separate private worker. Replit’s private-deployment gateway and a deployment-scoped access token restrict reachability; independent HMAC signatures bind the request, progress stream, and candidate and reject replay. The worker launches a fresh Codex SDK thread in a bounded temporary workspace with network and web search disabled. Codex may return only an explanation, exactly eight bounded RFC 6902 patch operations, and exactly five changed-node IDs. The worker then binds the trusted request fixture; the fixture is deliberately excluded from the model’s output schema. Deterministic validation checks the source hash, invariant ID, patch paths, graph structure, secret safety, change claims, and fixture identity. RetryProof translates the exact patched graph and reruns the same event, seed, scenario, and two deliveries. The repaired run records one mock refund and passes the declared invariant. If the worker is unavailable, the UI offers a clearly labeled validated fallback that is never represented as a fresh Codex run.
 
-The downloadable evidence package contains the sanitized source, synthetic fixture, before/after executions, bounded patch, repaired workflow, receipt, and explicit limitations. The receipt records the workflow source hash, declared scenarios, before/after suite hashes, repaired workflow hash, and model provenance. A green receipt means only that the approved invariant passed the declared deterministic scenarios. RetryProof never claims exactly-once execution or production safety and never performs a real external action.
+The downloadable reproducibility capsule contains the sanitized source, synthetic fixture, approved contract, paired before/after traces, bounded repair, repaired workflow, exact canonical receipt bytes, and explicit limitations. Its deterministic, path-sorted manifest records each listed file's byte length and SHA-256 digest so a consumer can check capsule consistency. It does not establish signer identity. The receipt records the workflow source hash, declared scenarios, before/after suite hashes, repaired workflow hash, and model provenance. A green receipt means only that the approved invariant passed the declared deterministic scenarios. RetryProof never claims exactly-once execution or production safety and never performs a real external action.
 
 Unlike a webhook mock, RetryProof does not stop at replaying requests. It tracks business-keyed effects across multiple declared fault phases, binds an accepted repair to the exact failing fixture, and proves the same schedule turns green under a deterministic oracle.
 
@@ -48,7 +48,7 @@ Codex performs constrained repository-like repair work rather than chat: it read
 
 ### What judges can run
 
-The hosted judge path requires no account and no rebuild. Select **Load seeded workflow**, then **Analyze retry risk**. The seeded proposal is an explicitly labeled cached GPT-5.6-informed contract; a supported custom upload exercises live GPT-5.6 analysis. Inspect and approve the at-most-once invariant, run the four-scenario suite, review the red two-effect timeout trace, select **Repair with live Codex**, follow the signed five-stage progress feed, and replay the identical suite. The Proof Flight Recorder derives its before/after graph, four-scenario matrix, changed nodes, and evidence references from that run, making the same event, seed, scenario, and two deliveries changing from two effects to one visible in one scan.
+The hosted judge path requires no account and no rebuild. Select **Load seeded workflow**, then **Analyze retry risk**. The seeded proposal is an explicitly labeled cached GPT-5.6-informed contract; a supported custom upload exercises live GPT-5.6 analysis. Inspect and approve the at-most-once invariant, run the four-scenario suite, review the red two-effect timeout trace, select **Repair with live Codex**, follow the signed five-stage progress feed, and replay the identical suite. The Proof Flight Recorder derives its before/after graph, four-scenario matrix, changed nodes, and evidence references from that run. Black Box Replay then shows the first actual trace event that differs, and the reproducibility capsule preserves the approved contract, paired traces, repair, canonical receipt, and deterministic per-file manifest.
 
 ## How we built it
 
@@ -72,6 +72,8 @@ Codex accelerated scaffolding, implementation across import/simulator/platform/U
 - Live Codex repair through a separately deployed private worker, accepted only by strict source, patch, fixture, secret, and deterministic replay validators.
 - Exact source/fixture/scenario binding across before and after executions.
 - A data-derived Proof Flight Recorder that turns the validated source graph, patched graph, all four scenario results, changed-node manifest, and run identifiers into an accessible before/after explanation.
+- A Black Box Replay that identifies the first actual before/after trace divergence instead of narrating a preselected difference.
+- A reproducibility capsule with the approved contract, paired traces, bounded repair, exact canonical receipt, limitations, and deterministic per-file SHA-256 manifest.
 - Secret rejection, credential-reference stripping, human approval, rate limits, expiring sessions, and mock-only execution.
 - A production Replit topology with a public Autoscale app, PostgreSQL persistence, and a separately deployed private Reserved VM worker; the older non-root Docker image remains a tested standalone reference package.
 
@@ -117,7 +119,7 @@ GPT-5.6 and Codex each have a real, distinct, constrained role. The imported and
 
 ### Design
 
-The product is a coherent five-stage workbench, not a chat surface or isolated proof of concept. It has first-run guidance, approval gates, loading/error states, repair review, evidence download, cached/live provenance, and judge-ready synthetic data. The Proof Flight Recorder gives the dense validator output a responsive graph, text alternative, four-scenario comparison table, human repair summary, and secondary raw-JSON disclosure.
+The product is a coherent five-stage workbench, not a chat surface or isolated proof of concept. It has first-run guidance, approval gates, loading/error states, repair review, evidence download, cached/live provenance, and judge-ready synthetic data. The Proof Flight Recorder gives the dense validator output a responsive graph, text alternative, four-scenario comparison table, human repair summary, Black Box Replay of the first actual trace divergence, canonical receipt download, and secondary raw-JSON disclosure.
 
 ### Potential Impact
 

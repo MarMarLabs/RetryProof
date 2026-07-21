@@ -13,12 +13,16 @@ const screenshotNames = [
   "04-codex-repair.png",
   "05-green-comparison.png",
   "06-evidence-receipt.png",
+  "07-proof-flight-recorder.png",
+  "08-black-box-replay-production.png",
 ];
 const screenshotPaths = screenshotNames.map((name) => join(submission, "screenshots", name));
 const thumbnailPath = join(submission, "thumbnail", "retryproof-thumbnail.png");
 const videoPath = join(submission, "video", "retryproof-demo-final.mp4");
 const captionPath = join(submission, "video", "captions.srt");
 const transcriptPath = join(submission, "video", "transcript.md");
+const receiptPath = join(submission, "evidence", "production-receipt-7443835dd9c7.json");
+const capsulePath = join(submission, "evidence", "production-capsule-7443835dd9c7.zip");
 
 function fail(message) {
   throw new Error(`Submission asset verification failed: ${message}`);
@@ -49,7 +53,15 @@ function assetRecord(path, metadata = {}) {
   };
 }
 
-for (const path of [...screenshotPaths, thumbnailPath, videoPath, captionPath, transcriptPath]) {
+for (const path of [
+  ...screenshotPaths,
+  thumbnailPath,
+  videoPath,
+  captionPath,
+  transcriptPath,
+  receiptPath,
+  capsulePath,
+]) {
   try {
     statSync(path);
   } catch {
@@ -111,6 +123,42 @@ for (const requiredText of ["GPT-5.6 proposes", "Codex repairs", "Deterministic 
   }
 }
 
+const capsuleTest = spawnSync("unzip", ["-t", capsulePath], { cwd: root, encoding: "utf8" });
+if (capsuleTest.status !== 0) {
+  fail(`evidence capsule failed ZIP integrity: ${capsuleTest.stderr.trim()}`);
+}
+
+function readCapsuleFile(path) {
+  const result = spawnSync("unzip", ["-p", capsulePath, path], { cwd: root });
+  if (result.status !== 0) {
+    fail(`evidence capsule is missing ${path}`);
+  }
+  return result.stdout;
+}
+
+const capsuleReceipt = readCapsuleFile("receipt.json");
+const canonicalReceipt = readFileSync(receiptPath);
+if (!capsuleReceipt.equals(canonicalReceipt)) {
+  fail("capsule receipt.json is not byte-identical to the canonical receipt");
+}
+
+const capsuleManifest = JSON.parse(readCapsuleFile("manifest.json").toString("utf8"));
+const capsuleEntryPaths = capsuleManifest.entries.map((entry) => entry.path);
+const sortedCapsuleEntryPaths = [...capsuleEntryPaths].sort((left, right) => (left < right ? -1 : left > right ? 1 : 0));
+if (capsuleEntryPaths.length !== 9 || JSON.stringify(capsuleEntryPaths) !== JSON.stringify(sortedCapsuleEntryPaths)) {
+  fail("capsule manifest must contain exactly nine path-sorted entries");
+}
+for (const entry of capsuleManifest.entries) {
+  const bytes = readCapsuleFile(entry.path);
+  const digest = createHash("sha256").update(bytes).digest("hex");
+  if (bytes.length !== entry.byteLength || digest !== entry.sha256) {
+    fail(`capsule manifest mismatch for ${entry.path}`);
+  }
+}
+if (capsuleManifest.receiptSha256 !== sha256(receiptPath)) {
+  fail("capsule manifest receiptSha256 does not match the canonical receipt");
+}
+
 const manifest = {
   schemaVersion: 1,
   video: assetRecord(videoPath, {
@@ -126,6 +174,13 @@ const manifest = {
   transcript: assetRecord(transcriptPath),
   thumbnail: assetRecord(thumbnailPath, { width: thumbnailInfo.width, height: thumbnailInfo.height }),
   screenshots,
+  evidence: {
+    receipt: assetRecord(receiptPath),
+    capsule: assetRecord(capsulePath, {
+      entries: capsuleManifest.entries.length,
+      receiptSha256: capsuleManifest.receiptSha256,
+    }),
+  },
 };
 
 const manifestPath = join(submission, "asset-manifest.json");

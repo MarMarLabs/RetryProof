@@ -2,11 +2,15 @@
 
 **Break your automation before retries do.**
 
+**One lost response. One retried event. Two refund effects.** RetryProof makes that risk visible before deployment—without making a real refund. Authority stays explicit: **GPT-5.6 proposes → a human approves → Codex prepares a bounded repair → deterministic software issues the verdict.**
+
 RetryProof is a deterministic retry-fault workbench for consequential n8n workflows. It imports an untrusted workflow export, removes credential references, rejects inline secrets, asks GPT-5.6 to propose a bounded reliability contract, and requires a human to approve that contract. A local simulator then proves what happens under declared faults. If the invariant fails, Codex prepares a reviewable hardening patch and regression fixture; the same deterministic scenario is rerun to produce red-to-green evidence.
 
 > RetryProof provides deterministic evidence that a workflow satisfies a user-approved invariant under a declared fault model. It does **not** prove exactly-once execution, emulate arbitrary n8n behavior, or certify production safety. No real external action is performed.
 
 > **Submission source of truth:** this repository is the standalone reference implementation and keeps its trusted-local/cached-production boundaries intact. The deployed OpenAI Build Week product is the integrated implementation in [`marmar9615-cloud/Copilot-Checker`](https://github.com/marmar9615-cloud/Copilot-Checker), served at [marmarlabs.com/retryproof/lab](https://marmarlabs.com/retryproof/lab/). That implementation adds the separate private Replit Codex worker, deployment access token, independent HMAC binding, signed progress stream, high-reasoning `gpt-5.6-sol` thread, trusted worker-side fixture binding, and ordered 300/330/360/390-second fail-closed timeout ladder. Submission claims and media are verified against the integrated product, not by pretending this reference server has those production capabilities.
+
+> **July 20 final-release status:** the integrated release is live. A clean anonymous production run reached the signed worker acceptance gate, completed one fresh Codex repair, replayed the identical deterministic suite from `2` effects to `1`, and produced the Black Box Replay plus a byte-verified reproducibility capsule. Exact hashes and limitations are recorded in `submission/VERIFICATION.md`.
 
 ## The two-refund failure
 
@@ -18,6 +22,12 @@ The included demonstration uses a synthetic refund webhook. Delivery one reaches
 | Refund effects for one event | 2 | 1 |
 | Approved at-most-once invariant | Fail | Pass |
 | Real network calls | 0 | 0 |
+
+## Proof a judge can inspect
+
+- **Black Box Replay** derives the first actual divergence between the accepted before and after traces, so the decisive behavioral change is shown from run data rather than a hard-coded success story.
+- The **reproducibility capsule** contains the approved contract, synthetic fixture, paired before/after traces, bounded repair, patched workflow, exact canonical receipt bytes, limitations, and a deterministic path-sorted manifest of each listed file's byte length and SHA-256 digest.
+- The manifest supports byte-consistency checks against the capsule. It does **not** establish signer identity, exactly-once execution, or production safety.
 
 ## Why GPT-5.6 and Codex are central
 
