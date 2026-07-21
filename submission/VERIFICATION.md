@@ -42,6 +42,7 @@ Production proof was refreshed on **July 20, 2026 CDT**. This file keeps local, 
 - API server: **130 passed / 20 skipped**.
 - RetryProof worker: **10 passed / 1 gated live spec skipped**, typecheck passed, build passed.
 - The final production copy states that a live repair is typically one to three minutes and may take up to about six within the fail-closed budget.
+- Standalone submission-source commit `fada0adf630891551a01e8aabc21968aa55c5a9b` passed GitHub Actions run `29790585629`: both the full `verify` job and the independent `component-journey` job completed successfully.
 
 ## Security and publication boundary
 
