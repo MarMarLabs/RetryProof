@@ -4,7 +4,7 @@ Production proof was refreshed on **July 20, 2026 CDT**. This file keeps local, 
 
 ## July 20 final-release production proof
 
-- Integrated feature commit `d2f04b6` adds the data-derived Black Box Replay, accessible completion focus/status, canonical receipt endpoint, and reproducibility capsule. Current personal-account main `13cc94d` contains that commit.
+- Integrated feature commit `d2f04b6` adds the data-derived Black Box Replay, accessible completion focus/status, canonical receipt endpoint, and reproducibility capsule. Current personal-account remote main `14064a7` contains that commit and is tree-identical to verified source tree `13cc94d` after three Replit publish-only commits.
 - The public app was guarded-republished without changing the private worker. `https://marmarlabs.com/`, `/api/healthz`, `/api/retryproof/v1/ready`, and `/retryproof/lab/` stayed HTTP 200 during the proof run.
 - A clean anonymous session remained on **Import** after loading the seeded workflow and advanced only after **Analyze retry risk**. The proposal was honestly labeled `GPT-5.6-informed seeded contract` / `Seeded · cached`.
 - Human approval preceded execution. The four-scenario deterministic suite produced the expected RED state with two mock effects for the retry-after-effect path.
@@ -22,7 +22,7 @@ Production proof was refreshed on **July 20, 2026 CDT**. This file keeps local, 
 
 - Source repository: `marmar9615-cloud/Copilot-Checker`.
 - Submitted implementation baseline: `2dd084c` (`Merge pull request #10`).
-- Final judge-readable feature source: `d2f04b6`; current integrated main at verification time: `13cc94d`.
+- Final judge-readable feature source: `d2f04b6`; verified deployed source tree: `13cc94d`; current remote main: tree-identical publish marker `14064a7`.
 - The public Replit deployment was refreshed with the integrated source while the separate private worker remained unchanged.
 - The public-app artifact manifests were checked before publishing: API server and NeverGuess declare production services; the private RetryProof worker does not claim the public app's production slot.
 
