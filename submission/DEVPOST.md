@@ -105,7 +105,7 @@ Models are most valuable here when their authority is deliberately limited. GPT-
 ## URLs and required identifiers
 
 - Hosted demo: `https://marmarlabs.com/retryproof/lab/`
-- Repository: `https://github.com/marmar9615-cloud/RetryProof-Build-Week-2026`
+- Repository: `https://github.com/MarMarLabs/RetryProof-Build-Week-2026`
 - Public YouTube video: `https://youtu.be/4Oaie-WLKAc`
 - Majority-core Codex `/feedback` Session ID: `019f5e19-b54f-7862-8023-f0f4251a5a0f`
 - Submitted Devpost project: `https://devpost.com/software/retryproof`

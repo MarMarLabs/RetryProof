@@ -1,6 +1,6 @@
 # RetryProof architecture
 
-> This document describes the standalone reference implementation in this repository. The submitted production system is the integrated MarMar Labs implementation linked from the root README, with a separate private Replit Codex worker. Do not use the reference server's cached-production restriction to describe the deployed submission.
+> This document describes the standalone reference implementation in this repository. The submitted production system is the integrated MarMarLabs implementation linked from the root README, with a separate private Replit Codex worker. Do not use the reference server's cached-production restriction to describe the deployed submission.
 
 ## Product boundary
 

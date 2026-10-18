@@ -14,7 +14,7 @@ Do not check an item until the corresponding artifact or visible state exists.
 ## Working product
 
 - [x] Hosted HTTPS demo opens without login or rebuild; final incognito recheck remains part of the submission audit.
-- [x] Seeded refund journey works in local production builds and the integrated MarMar Labs product tests.
+- [x] Seeded refund journey works in local production builds and the integrated MarMarLabs product tests.
 - [x] Private Replit Codex worker is published, reachable only through a production External Access Token, and independently HMAC-authenticated.
 - [x] Hosted **Repair with live Codex** completed with real signed progress events and fresh thread provenance; the final video take will repeat and record this proof.
 - [x] Import and compatibility disclosure are accurate.

@@ -1,6 +1,6 @@
 # API and error contracts
 
-> This document describes the standalone reference API in this repository. The submitted production API is the namespaced `/api/retryproof/v1/*` surface in the integrated MarMar Labs repository linked from the root README.
+> This document describes the standalone reference API in this repository. The submitted production API is the namespaced `/api/retryproof/v1/*` surface in the integrated MarMarLabs repository linked from the root README.
 
 The browser API is session scoped. State-changing requests use a signed anonymous session, CSRF token, ownership checks, rate limits, and idempotency where replay would be harmful.
 

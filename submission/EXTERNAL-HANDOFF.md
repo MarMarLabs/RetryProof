@@ -6,7 +6,7 @@ Everything below changes external state. Do not perform an applicable step until
 
 - Integrated personal-account remote main is at `14064a7` (`marmar9615-cloud/Copilot-Checker`) and contains judge-readable evidence feature commit `d2f04b6`; the three commits after verified source tree `13cc94d` are Replit publish-only commits with no file-tree difference. Both Replit deployments are healthy.
 - The public app readiness endpoint reports live GPT-5.6 and live Codex configured, and the July 20 clean anonymous production journey reached signed worker acceptance and a fresh green replay.
-- The public judge snapshot is `https://github.com/marmar9615-cloud/RetryProof-Build-Week-2026` at final judge-readable evidence package commit `2b245758796096a960619dde1b51b35276f85307`.
+- The public judge snapshot is `https://github.com/MarMarLabs/RetryProof-Build-Week-2026` at final judge-readable evidence package commit `2b245758796096a960619dde1b51b35276f85307`.
 - The final 1:59.300 demo is public at `https://youtu.be/4Oaie-WLKAc`.
 - Majority-core Codex `/feedback` Session ID: `019f5e19-b54f-7862-8023-f0f4251a5a0f`.
 - Devpost submission `1092862` is **Submitted** and published at `https://devpost.com/software/retryproof`; project version 5 contains the final Black Box Replay/capsule description, verified video, personal public repository, hosted judge path, and required Build Week answers.
@@ -24,12 +24,12 @@ Public browser
   -> public API deterministic validators and identical-suite replay
 ```
 
-The worker is infrastructure for the same RetryProof product, not a second user-facing product. Its separate Replit project gives it a separate app-secret set and deployment lifecycle. It must receive no MarMar Labs database, Stripe, GitHub, session, authentication, or unrelated product credentials.
+The worker is infrastructure for the same RetryProof product, not a second user-facing product. Its separate Replit project gives it a separate app-secret set and deployment lifecycle. It must receive no MarMarLabs database, Stripe, GitHub, session, authentication, or unrelated product credentials.
 
 ## Exact worker deployment inputs
 
 - Replit project: existing blank `RetryProof-Codex-Worker` project.
-- Source repository: `https://github.com/marmar9615-cloud/Copilot-Checker`.
+- Source repository: `https://github.com/MarMarLabs/Copilot-Checker`.
 - Package: `artifacts/retryproof-codex-worker`.
 - Deployment type: Reserved VM, **Web server**, Private access set to **Only you**, one exposed port.
 - Build command:
@@ -63,7 +63,7 @@ After the private worker publishes successfully:
    - `RETRYPROOF_CODEX_WORKER_ACCESS_TOKEN=<production external access token>`
    - `RETRYPROOF_CODEX_WORKER_SECRET=<same HMAC secret as worker>`
 4. Pull the merged source commit into the existing Replit project.
-5. Republish the existing MarMar Labs deployment.
+5. Republish the existing MarMarLabs deployment.
 6. Verify `GET https://marmarlabs.com/api/retryproof/v1/ready` returns `ready=true` and `liveCodexConfigured=true` without returning any secret or private worker URL.
 
 Replit production External Access Tokens are tied to a published deployment. Every later worker republish requires this rotation order: publish worker, create replacement token, update the main-app secret, republish main app, revoke the old token if it remains listed, then repeat the smoke test.

@@ -13,7 +13,7 @@ GPT-5.6 proposes a grounded reliability contract from a sanitized workflow. A hu
 RetryProof uses no real payment call and does not claim exactly-once execution or production safety.
 
 Demo: `https://marmarlabs.com/retryproof/lab/`
-Repository: `https://github.com/marmar9615-cloud/RetryProof-Build-Week-2026`
+Repository: `https://github.com/MarMarLabs/RetryProof-Build-Week-2026`
 
 #OpenAIBuildWeek #Codex #GPT56 #DeveloperTools
 

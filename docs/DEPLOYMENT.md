@@ -1,6 +1,6 @@
 # Deployment guide
 
-> This is the standalone Docker/Render reference deployment. The submitted product uses the integrated MarMar Labs Replit topology: public Autoscale app plus a separate private Reserved VM Codex worker. The current external state and safe worker-token rotation order are maintained in `submission/EXTERNAL-HANDOFF.md` and the installed `retryproof-replit-publish-guard` skill.
+> This is the standalone Docker/Render reference deployment. The submitted product uses the integrated MarMarLabs Replit topology: public Autoscale app plus a separate private Reserved VM Codex worker. The current external state and safe worker-token rotation order are maintained in `submission/EXTERNAL-HANDOFF.md` and the installed `retryproof-replit-publish-guard` skill.
 
 The judged demo should remain usable without a rebuild and should not depend on a live model call. Deploy cached mode first, then enable live mode only after the deterministic path and provenance labels are verified.
 

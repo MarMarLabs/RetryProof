@@ -1,6 +1,6 @@
 # Privacy and data retention
 
-> This document describes the standalone reference implementation. The submitted integrated product additionally sends only the sanitized repair bundle to a separate private worker; that worker receives no MarMar Labs database, authentication, billing, GitHub, or unrelated product credentials.
+> This document describes the standalone reference implementation. The submitted integrated product additionally sends only the sanitized repair bundle to a separate private worker; that worker receives no MarMarLabs database, authentication, billing, GitHub, or unrelated product credentials.
 
 ## Data-minimization promise
 
